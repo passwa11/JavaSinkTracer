@@ -1,0 +1,140 @@
+[
+    {
+        "vul_type": "RCE",
+        "sink_desc": "任意代码执行漏洞",
+        "severity": "High",
+        "sink": "Runtime:exec",
+        "call_chains": [
+            {
+                "chain": [
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\Rce.java:CommandExec"
+                ],
+                "code": [
+                    "    public String CommandExec(String cmd) {\n        Runtime run = Runtime.getRuntime();\n        StringBuilder sb = new StringBuilder();\n\n        try {\n            Process p = run.exec(cmd);\n            BufferedInputStream in = new BufferedInputStream(p.getInputStream());\n            BufferedReader inBr = new BufferedReader(new InputStreamReader(in));\n            String tmpStr;\n\n            while ((tmpStr = inBr.readLine()) != null) {\n                sb.append(tmpStr);\n            }\n\n            if (p.waitFor() != 0) {\n                if (p.exitValue() == 1)\n                    return \"Command exec failed!!\";\n            }\n\n            inBr.close();\n            in.close();\n        } catch (Exception e) {\n            return e.toString();\n        }\n        return sb.toString();\n    }\n"
+                ]
+            }
+        ]
+    },
+    {
+        "vul_type": "RCE",
+        "sink_desc": "任意代码执行漏洞",
+        "severity": "High",
+        "sink": "GroovyShell:evaluate",
+        "call_chains": [
+            {
+                "chain": [
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\Rce.java:groovyshell"
+                ],
+                "code": [
+                    "    public void groovyshell(String content) {\n        GroovyShell groovyShell = new GroovyShell();\n        groovyShell.evaluate(content);\n    }\n"
+                ]
+            }
+        ]
+    },
+    {
+        "vul_type": "UNSERIALIZE",
+        "sink_desc": "反序列化漏洞",
+        "severity": "High",
+        "sink": "ObjectInputStream:readObject",
+        "call_chains": [
+            {
+                "chain": [
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\Shiro.java:shiro_deserialize"
+                ],
+                "code": [
+                    "    public String shiro_deserialize(HttpServletRequest req, HttpServletResponse res) {\n        Cookie cookie = getCookie(req, Constants.REMEMBER_ME_COOKIE);\n        if (null == cookie) {\n            return \"No rememberMe cookie. Right?\";\n        }\n\n        try {\n            String rememberMe = cookie.getValue();\n            byte[] b64DecodeRememberMe = java.util.Base64.getDecoder().decode(rememberMe);\n            byte[] aesDecrypt = acs.decrypt(b64DecodeRememberMe, KEYS).getBytes();\n            ByteArrayInputStream bytes = new ByteArrayInputStream(aesDecrypt);\n            ObjectInputStream in = new ObjectInputStream(bytes);\n            in.readObject();\n            in.close();\n        } catch (Exception e){\n            if (CookieUtils.addCookie(res, \"rememberMe\", DELETE_ME)){\n                log.error(e.getMessage());\n                return \"RememberMe cookie decrypt error. Set deleteMe cookie success.\";\n            }\n        }\n\n        return \"Shiro deserialize\";\n    }\n"
+                ]
+            }
+        ]
+    },
+    {
+        "vul_type": "UNSERIALIZE",
+        "sink_desc": "反序列化漏洞",
+        "severity": "High",
+        "sink": "Yaml:load",
+        "call_chains": [
+            {
+                "chain": [
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\Rce.java:yarm"
+                ],
+                "code": [
+                    "    public void yarm(String content) {\n        Yaml y = new Yaml();\n        y.load(content);\n    }\n"
+                ]
+            },
+            {
+                "chain": [
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\Rce.java:secYarm"
+                ],
+                "code": [
+                    "    public void secYarm(String content) {\n        Yaml y = new Yaml(new SafeConstructor());\n        y.load(content);\n    }\n"
+                ]
+            }
+        ]
+    },
+    {
+        "vul_type": "SSRF",
+        "sink_desc": "服务端请求伪造漏洞",
+        "severity": "Medium",
+        "sink": "URL:openConnection",
+        "call_chains": [
+            {
+                "chain": [
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\SSRF.java:URLConnectionVuln",
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\util\\HttpUtils.java:URLConnection"
+                ],
+                "code": [
+                    "    public String URLConnectionVuln(String url) {\n        return HttpUtils.URLConnection(url);\n    }\n",
+                    "    public static String URLConnection(String url) {\n        try {\n            URL u = new URL(url);\n            URLConnection urlConnection = u.openConnection();\n            BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream())); //send request\n            String inputLine;\n            StringBuilder html = new StringBuilder();\n\n            while ((inputLine = in.readLine()) != null) {\n                html.append(inputLine);\n            }\n            in.close();\n            return html.toString();\n        } catch (Exception e) {\n            logger.error(e.getMessage());\n            return e.getMessage();\n        }\n    }\n"
+                ]
+            },
+            {
+                "chain": [
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\SSRF.java:URLConnectionSec",
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\util\\HttpUtils.java:URLConnection"
+                ],
+                "code": [
+                    "    public String URLConnectionSec(String url) {\n\n        // Decline not http/https protocol\n        if (!SecurityUtil.isHttp(url)) {\n            return \"[-] SSRF check failed\";\n        }\n\n        try {\n            SecurityUtil.startSSRFHook();\n            return HttpUtils.URLConnection(url);\n        } catch (SSRFException | IOException e) {\n            return e.getMessage();\n        } finally {\n            SecurityUtil.stopSSRFHook();\n        }\n\n    }\n",
+                    "    public static String URLConnection(String url) {\n        try {\n            URL u = new URL(url);\n            URLConnection urlConnection = u.openConnection();\n            BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream())); //send request\n            String inputLine;\n            StringBuilder html = new StringBuilder();\n\n            while ((inputLine = in.readLine()) != null) {\n                html.append(inputLine);\n            }\n            in.close();\n            return html.toString();\n        } catch (Exception e) {\n            logger.error(e.getMessage());\n            return e.getMessage();\n        }\n    }\n"
+                ]
+            },
+            {
+                "chain": [
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\SSRF.java:httpURLConnection",
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\util\\HttpUtils.java:HttpURLConnection"
+                ],
+                "code": [
+                    "    public String httpURLConnection(@RequestParam String url) {\n        try {\n            SecurityUtil.startSSRFHook();\n            return HttpUtils.HttpURLConnection(url);\n        } catch (SSRFException | IOException e) {\n            return e.getMessage();\n        } finally {\n            SecurityUtil.stopSSRFHook();\n        }\n    }\n",
+                    "    public static String HttpURLConnection(String url) {\n        try {\n            URL u = new URL(url);\n            URLConnection urlConnection = u.openConnection();\n            HttpURLConnection conn = (HttpURLConnection) urlConnection;\n//             conn.setInstanceFollowRedirects(false);\n//             Many HttpURLConnection methods can send http request, such as getResponseCode, getHeaderField\n            InputStream is = conn.getInputStream();  // send request\n            BufferedReader in = new BufferedReader(new InputStreamReader(is));\n            String inputLine;\n            StringBuilder html = new StringBuilder();\n\n            while ((inputLine = in.readLine()) != null) {\n                html.append(inputLine);\n            }\n            in.close();\n            return html.toString();\n        } catch (IOException e) {\n            logger.error(e.getMessage());\n            return e.getMessage();\n        }\n    }\n"
+                ]
+            },
+            {
+                "chain": [
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\SSRF.java:httpURLConnectionVuln",
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\util\\HttpUtils.java:HttpURLConnection"
+                ],
+                "code": [
+                    "    public String httpURLConnectionVuln(@RequestParam String url) {\n        return HttpUtils.HttpURLConnection(url);\n    }\n",
+                    "    public static String HttpURLConnection(String url) {\n        try {\n            URL u = new URL(url);\n            URLConnection urlConnection = u.openConnection();\n            HttpURLConnection conn = (HttpURLConnection) urlConnection;\n//             conn.setInstanceFollowRedirects(false);\n//             Many HttpURLConnection methods can send http request, such as getResponseCode, getHeaderField\n            InputStream is = conn.getInputStream();  // send request\n            BufferedReader in = new BufferedReader(new InputStreamReader(is));\n            String inputLine;\n            StringBuilder html = new StringBuilder();\n\n            while ((inputLine = in.readLine()) != null) {\n                html.append(inputLine);\n            }\n            in.close();\n            return html.toString();\n        } catch (IOException e) {\n            logger.error(e.getMessage());\n            return e.getMessage();\n        }\n    }\n"
+                ]
+            }
+        ]
+    },
+    {
+        "vul_type": "SSRF",
+        "sink_desc": "服务端请求伪造漏洞",
+        "severity": "Medium",
+        "sink": "OkHttpClient:newCall",
+        "call_chains": [
+            {
+                "chain": [
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\SSRF.java:okhttp",
+                    "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\util\\HttpUtils.java:okhttp"
+                ],
+                "code": [
+                    "    public String okhttp(@RequestParam String url) {\n\n        try {\n            SecurityUtil.startSSRFHook();\n            return HttpUtils.okhttp(url);\n        } catch (SSRFException | IOException e) {\n            return e.getMessage();\n        } finally {\n            SecurityUtil.stopSSRFHook();\n        }\n\n    }\n",
+                    "    public static String okhttp(String url) throws IOException {\n        OkHttpClient client = new OkHttpClient();\n//         client.setFollowRedirects(false);\n        com.squareup.okhttp.Request ok_http = new com.squareup.okhttp.Request.Builder().url(url).build();\n        return client.newCall(ok_http).execute().body().string();\n    }\n"
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,33 @@
+{
+  "depth": 5,
+  "path_exclusions": [".idea","resources","test","META-INF"],
+  "sink_rules": [
+    {
+      "sink_name": "RCE",
+      "sink_desc": "任意代码执行漏洞",
+      "severity_level": "High",
+      "sinks": [
+        "java.lang.Runtime:exec",
+        "groovy.lang.GroovyShell:evaluate"
+      ]
+    },
+    {
+      "sink_name": "UNSERIALIZE",
+      "sink_desc": "反序列化漏洞",
+      "severity_level": "High",
+      "sinks": [
+        "java.io.ObjectInputStream:readObject|readUnshared",
+        "org.yaml.snakeyaml.Yaml:load"
+      ]
+    },
+    {
+      "sink_name": "SSRF",
+      "sink_desc": "服务端请求伪造漏洞",
+      "severity_level": "Medium",
+      "sinks": [
+        "java.net.URL:openConnection",
+        "com.squareup.okhttp.OkHttpClient:newCall"
+      ]
+    }
+  ]
+}

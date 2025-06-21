@@ -1,0 +1,1811 @@
+
+      ███████╗███████╗ ██████╗  
+     ██╔════╝██╔════╝██╔════╝ 
+     ███████╗█████╗  ██║     
+     ╚════██║██╔══╝  ██║      
+     ███████║███████╗╚██████╗ 
+     ╚══════╝╚══════╝ ╚═════╝ 
+    
+    Java源代码漏洞审计工具_Tr0e
+    
+[+]待扫描的project_name: java-sec-code, project_path: D:/Code/Github/java-sec-code
+[+]成功加载Rules：{'depth': 5, 'path_exclusions': ['.idea', 'resources', 'test', 'META-INF'], 'sink_rules': [{'sink_name': 'RCE', 'sink_desc': '任意代码执行漏洞', 'severity_level': 'High', 'sinks': ['java.lang.Runtime:exec', 'groovy.lang.GroovyShell:evaluate']}, {'sink_name': 'UNSERIALIZE', 'sink_desc': '反序列化漏洞', 'severity_level': 'High', 'sinks': ['java.io.ObjectInputStream:readObject|readUnshared', 'org.yaml.snakeyaml.Yaml:load']}, {'sink_name': 'SSRF', 'sink_desc': '服务端请求伪造漏洞', 'severity_level': 'Medium', 'sinks': ['java.net.URL:openConnection', 'com.squareup.okhttp.OkHttpClient:newCall']}]}
+[+]正构建项目AST：D:/Code/Github/java-sec-code
+[+]正在分析的文件：Application.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\Application.java
+[CallGraph] Application:configure -> SpringApplicationBuilder:sources
+[CallGraph] Application:main -> SpringApplication:run
+[+]正在分析的文件：imageConfig.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\imageConfig.java
+[CallGraph] imageConfig:addResourceHandlers -> ResourceHandlerRegistry:addResourceHandler
+[CallGraph] imageConfig:addResourceHandlers -> ResourceHandlerRegistry:addResourceLocations
+[+]正在分析的文件：Constants.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\Constants.java
+[+]正在分析的文件：CorsConfig2.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\CorsConfig2.java
+[+]正在分析的文件：CsrfTokenBean.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\CsrfTokenBean.java
+[CallGraph] CsrfTokenBean:cookieCsrfTokenRepository -> CookieCsrfTokenRepository:withHttpOnlyFalse
+[+]正在分析的文件：CustomCorsConfig.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\CustomCorsConfig.java
+[CallGraph] CustomCorsConfig:addCorsMappings -> CorsRegistry:addMapping
+[CallGraph] CustomCorsConfig:addCorsMappings -> CorsRegistry:allowedMethods
+[CallGraph] CustomCorsConfig:addCorsMappings -> CorsRegistry:allowCredentials
+[CallGraph] unknown:unknown -> unknown:setCorsProcessor
+[+]正在分析的文件：HttpServiceConfig.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\HttpServiceConfig.java
+[CallGraph] CustomClientHttpRequestFactory:prepareConnection -> HttpURLConnection:setInstanceFollowRedirects
+[CallGraph] HttpServiceConfig:restTemplateBanRedirects -> RestTemplateBuilder:requestFactory
+[CallGraph] HttpServiceConfig:restTemplateBanRedirects -> RestTemplateBuilder:build
+[CallGraph] HttpServiceConfig:restTemplate -> RestTemplateBuilder:build
+[+]正在分析的文件：Object2Jsonp.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\Object2Jsonp.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] Object2Jsonp:beforeBodyWriteInternal -> Object2Jsonp:getRealJsonpFunc
+[CallGraph] Object2Jsonp:beforeBodyWriteInternal -> StringUtils:isNotBlank
+[CallGraph] Object2Jsonp:beforeBodyWriteInternal -> Object2Jsonp:jsonpReferHandler
+[CallGraph] Object2Jsonp:getRealJsonpFunc -> HttpServletRequest:getParameter
+[CallGraph] Object2Jsonp:getRealJsonpFunc -> StringUtils:isNotBlank
+[CallGraph] Object2Jsonp:jsonpReferHandler -> HttpServletRequest:getHeader
+[CallGraph] Object2Jsonp:jsonpReferHandler -> HttpServletRequest:getRequestURL
+[CallGraph] Object2Jsonp:jsonpReferHandler -> HttpServletRequest:toString
+[CallGraph] Object2Jsonp:jsonpReferHandler -> HttpServletRequest:getQueryString
+[CallGraph] Object2Jsonp:jsonpReferHandler -> WebConfig:getJsonpReferCheckEnabled
+[CallGraph] Object2Jsonp:jsonpReferHandler -> SecurityUtil:checkURL
+[CallGraph] Object2Jsonp:jsonpReferHandler -> Logger:error
+[CallGraph] Object2Jsonp:jsonpReferHandler -> HttpServletResponse:sendRedirect
+[CallGraph] Object2Jsonp:jsonpReferHandler -> Logger:error
+[CallGraph] Object2Jsonp:jsonpReferHandler -> e:toString
+[+]正在分析的文件：SafeDomainConfig.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\SafeDomainConfig.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] SafeDomainConfig:safeDomainParser -> Logger:info
+[CallGraph] SafeDomainConfig:safeDomainParser -> Logger:error
+[CallGraph] SafeDomainConfig:safeDomainParser -> e:getMessage
+[+]正在分析的文件：SafeDomainParser.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\SafeDomainParser.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> DocumentBuilderFactory:newInstance
+[CallGraph] unknown:unknown -> DocumentBuilderFactory:newDocumentBuilder
+[CallGraph] unknown:unknown -> DocumentBuilder:parse
+[CallGraph] unknown:unknown -> ClassPathResource:getInputStream
+[CallGraph] unknown:unknown -> Document:getElementsByTagName
+[CallGraph] unknown:unknown -> NodeList:item
+[CallGraph] unknown:unknown -> Node:getChildNodes
+[CallGraph] unknown:unknown -> NodeList:getLength
+[CallGraph] unknown:unknown -> NodeList:item
+[CallGraph] unknown:unknown -> Node:getNodeName
+[CallGraph] unknown:unknown -> Node:equals
+[CallGraph] unknown:unknown -> Node:getChildNodes
+[CallGraph] unknown:unknown -> NodeList:getLength
+[CallGraph] unknown:unknown -> NodeList:item
+[CallGraph] unknown:unknown -> NodeList:getNodeName
+[CallGraph] unknown:unknown -> NodeList:equals
+[CallGraph] unknown:unknown -> ArrayList:add
+[CallGraph] unknown:unknown -> NodeList:getTextContent
+[CallGraph] unknown:unknown -> Node:getNodeName
+[CallGraph] unknown:unknown -> Node:equals
+[CallGraph] unknown:unknown -> Node:getChildNodes
+[CallGraph] unknown:unknown -> NodeList:getLength
+[CallGraph] unknown:unknown -> NodeList:item
+[CallGraph] unknown:unknown -> Node:getNodeName
+[CallGraph] unknown:unknown -> Node:equals
+[CallGraph] unknown:unknown -> ArrayList:add
+[CallGraph] unknown:unknown -> Node:getTextContent
+[CallGraph] unknown:unknown -> Logger:error
+[CallGraph] unknown:unknown -> e:toString
+[CallGraph] unknown:unknown -> WebConfig:setSafeDomains
+[CallGraph] unknown:unknown -> Logger:info
+[CallGraph] unknown:unknown -> ArrayList:toString
+[CallGraph] unknown:unknown -> WebConfig:setBlockDomains
+[CallGraph] unknown:unknown -> DocumentBuilderFactory:newInstance
+[CallGraph] unknown:unknown -> DocumentBuilderFactory:newDocumentBuilder
+[CallGraph] unknown:unknown -> DocumentBuilder:parse
+[CallGraph] unknown:unknown -> ClassPathResource:getInputStream
+[CallGraph] unknown:unknown -> Document:getElementsByTagName
+[CallGraph] unknown:unknown -> NodeList:item
+[CallGraph] unknown:unknown -> Node:getChildNodes
+[CallGraph] unknown:unknown -> NodeList:getLength
+[CallGraph] unknown:unknown -> NodeList:item
+[CallGraph] unknown:unknown -> Node:getNodeName
+[CallGraph] unknown:unknown -> Node:equals
+[CallGraph] unknown:unknown -> Node:getChildNodes
+[CallGraph] unknown:unknown -> NodeList:getLength
+[CallGraph] unknown:unknown -> NodeList:item
+[CallGraph] unknown:unknown -> Node:getNodeName
+[CallGraph] unknown:unknown -> Node:equals
+[CallGraph] unknown:unknown -> ArrayList:add
+[CallGraph] unknown:unknown -> Node:getTextContent
+[CallGraph] unknown:unknown -> Node:getNodeName
+[CallGraph] unknown:unknown -> Node:equals
+[CallGraph] unknown:unknown -> Node:getChildNodes
+[CallGraph] unknown:unknown -> NodeList:getLength
+[CallGraph] unknown:unknown -> NodeList:item
+[CallGraph] unknown:unknown -> Node:getNodeName
+[CallGraph] unknown:unknown -> Node:equals
+[CallGraph] unknown:unknown -> ArrayList:add
+[CallGraph] unknown:unknown -> Node:getTextContent
+[CallGraph] unknown:unknown -> Node:getNodeName
+[CallGraph] unknown:unknown -> Node:equals
+[CallGraph] unknown:unknown -> Node:getChildNodes
+[CallGraph] unknown:unknown -> NodeList:getLength
+[CallGraph] unknown:unknown -> NodeList:item
+[CallGraph] unknown:unknown -> Node:getNodeName
+[CallGraph] unknown:unknown -> Node:equals
+[CallGraph] unknown:unknown -> ArrayList:add
+[CallGraph] unknown:unknown -> Node:getTextContent
+[CallGraph] unknown:unknown -> Logger:error
+[CallGraph] unknown:unknown -> e:toString
+[CallGraph] unknown:unknown -> Logger:info
+[CallGraph] unknown:unknown -> ArrayList:toString
+[CallGraph] unknown:unknown -> WebConfig:setSsrfBlockDomains
+[CallGraph] unknown:unknown -> WebConfig:setSsrfBlockIps
+[CallGraph] unknown:unknown -> WebConfig:setSsrfSafeDomains
+[+]正在分析的文件：SwaggerConfig.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\SwaggerConfig.java
+[CallGraph] SwaggerConfig:api -> Docket:enable
+[CallGraph] SwaggerConfig:api -> Docket:select
+[CallGraph] SwaggerConfig:api -> Docket:apis
+[CallGraph] SwaggerConfig:api -> RequestHandlerSelectors:any
+[CallGraph] SwaggerConfig:api -> Docket:paths
+[CallGraph] SwaggerConfig:api -> PathSelectors:any
+[CallGraph] SwaggerConfig:api -> Docket:build
+[+]正在分析的文件：TomcatFilterMemShell.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\TomcatFilterMemShell.java
+[CallGraph] unknown:unknown -> System:println
+[CallGraph] unknown:unknown -> Thread:currentThread
+[CallGraph] unknown:unknown -> Thread:getContextClassLoader
+[CallGraph] unknown:unknown -> WebappClassLoaderBase:getResources
+[CallGraph] unknown:unknown -> WebappClassLoaderBase:getContext
+[CallGraph] unknown:unknown -> StandardContext:getClass
+[CallGraph] unknown:unknown -> StandardContext:getSuperclass
+[CallGraph] unknown:unknown -> StandardContext:getClass
+[CallGraph] unknown:unknown -> Class:getDeclaredField
+[CallGraph] unknown:unknown -> Field:setAccessible
+[CallGraph] unknown:unknown -> Field:get
+[CallGraph] unknown:unknown -> Map:get
+[CallGraph] unknown:unknown -> FilterDef:setFilter
+[CallGraph] unknown:unknown -> FilterDef:setFilterName
+[CallGraph] unknown:unknown -> FilterDef:setFilterClass
+[CallGraph] unknown:unknown -> TomcatFilterMemShell:getClass
+[CallGraph] unknown:unknown -> TomcatFilterMemShell:getName
+[CallGraph] unknown:unknown -> StandardContext:addFilterDef
+[CallGraph] unknown:unknown -> FilterMap:addURLPattern
+[CallGraph] unknown:unknown -> FilterMap:setFilterName
+[CallGraph] unknown:unknown -> FilterMap:setDispatcher
+[CallGraph] unknown:unknown -> DispatcherType:name
+[CallGraph] unknown:unknown -> StandardContext:addFilterMapBefore
+[CallGraph] unknown:unknown -> ApplicationFilterConfig:getDeclaredConstructor
+[CallGraph] unknown:unknown -> Constructor:setAccessible
+[CallGraph] unknown:unknown -> Constructor:newInstance
+[CallGraph] unknown:unknown -> Map:put
+[CallGraph] unknown:unknown -> System:println
+[CallGraph] unknown:unknown -> System:println
+[CallGraph] unknown:unknown -> System:println
+[CallGraph] unknown:unknown -> e:getMessage
+[CallGraph] TomcatFilterMemShell:doFilter -> ServletRequest:getParameter
+[CallGraph] TomcatFilterMemShell:doFilter -> Runtime:getRuntime
+[CallGraph] TomcatFilterMemShell:doFilter -> Runtime:exec
+[CallGraph] TomcatFilterMemShell:doFilter -> Process:getInputStream
+[CallGraph] TomcatFilterMemShell:doFilter -> java:readLine
+[CallGraph] TomcatFilterMemShell:doFilter -> StringBuilder:append
+[CallGraph] TomcatFilterMemShell:doFilter -> StringBuilder:append
+[CallGraph] TomcatFilterMemShell:doFilter -> ServletResponse:getOutputStream
+[CallGraph] TomcatFilterMemShell:doFilter -> ServletResponse:write
+[CallGraph] TomcatFilterMemShell:doFilter -> StringBuilder:toString
+[CallGraph] TomcatFilterMemShell:doFilter -> StringBuilder:getBytes
+[CallGraph] TomcatFilterMemShell:doFilter -> ServletResponse:getOutputStream
+[CallGraph] TomcatFilterMemShell:doFilter -> ServletResponse:flush
+[CallGraph] TomcatFilterMemShell:doFilter -> ServletResponse:getOutputStream
+[CallGraph] TomcatFilterMemShell:doFilter -> ServletResponse:close
+[CallGraph] TomcatFilterMemShell:doFilter -> FilterChain:doFilter
+[+]正在分析的文件：WebConfig.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\WebConfig.java
+[+]正在分析的文件：WebSocketsCmdEndpoint.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\WebSocketsCmdEndpoint.java
+[CallGraph] WebSocketsCmdEndpoint:onOpen -> Session:addMessageHandler
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> System:getProperty
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> System:toLowerCase
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> System:startsWith
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> Runtime:getRuntime
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> Runtime:exec
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> Runtime:getRuntime
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> Runtime:exec
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> Process:getInputStream
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> InputStream:read
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> StringBuilder:append
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> InputStream:close
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> Process:waitFor
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> Session:getBasicRemote
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> Session:sendText
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> StringBuilder:toString
+[CallGraph] WebSocketsCmdEndpoint:onMessage -> exception:printStackTrace
+[+]正在分析的文件：WebSocketsProxyEndpoint.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\config\WebSocketsProxyEndpoint.java
+[CallGraph] WebSocketsProxyEndpoint:readFromServer -> ByteBuffer:allocate
+[CallGraph] WebSocketsProxyEndpoint:readFromServer -> AsynchronousSocketChannel:read
+[CallGraph] WebSocketsProxyEndpoint:completed -> ByteBuffer:clear
+[CallGraph] WebSocketsProxyEndpoint:completed -> ByteBuffer:hasRemaining
+[CallGraph] WebSocketsProxyEndpoint:completed -> ByteBuffer:get
+[CallGraph] WebSocketsProxyEndpoint:completed -> ByteArrayOutputStream:write
+[CallGraph] WebSocketsProxyEndpoint:completed -> ByteBuffer:wrap
+[CallGraph] WebSocketsProxyEndpoint:completed -> ByteArrayOutputStream:toByteArray
+[CallGraph] WebSocketsProxyEndpoint:completed -> scAttachment.channel:isOpen
+[CallGraph] WebSocketsProxyEndpoint:completed -> scAttachment.channel:getBasicRemote
+[CallGraph] WebSocketsProxyEndpoint:completed -> scAttachment.channel:sendBinary
+[CallGraph] WebSocketsProxyEndpoint:completed -> WebSocketsProxyEndpoint:readFromServer
+[CallGraph] WebSocketsProxyEndpoint:completed -> ByteBuffer:get
+[CallGraph] WebSocketsProxyEndpoint:completed -> ByteArrayOutputStream:write
+[CallGraph] WebSocketsProxyEndpoint:completed -> WebSocketsProxyEndpoint:readFromServer
+[CallGraph] WebSocketsProxyEndpoint:failed -> Throwable:printStackTrace
+[CallGraph] WebSocketsProxyEndpoint:process -> HashMap:get
+[CallGraph] WebSocketsProxyEndpoint:process -> Session:getId
+[CallGraph] WebSocketsProxyEndpoint:process -> AsynchronousSocketChannel:write
+[CallGraph] WebSocketsProxyEndpoint:process -> AsynchronousSocketChannel:get
+[CallGraph] WebSocketsProxyEndpoint:process -> ByteBuffer:flip
+[CallGraph] WebSocketsProxyEndpoint:process -> ByteBuffer:clear
+[CallGraph] WebSocketsProxyEndpoint:process -> ByteBuffer:array
+[CallGraph] WebSocketsProxyEndpoint:process -> String:split
+[CallGraph] WebSocketsProxyEndpoint:process -> String:split
+[CallGraph] WebSocketsProxyEndpoint:process -> AsynchronousSocketChannel:open
+[CallGraph] WebSocketsProxyEndpoint:process -> Integer:parseInt
+[CallGraph] WebSocketsProxyEndpoint:process -> AsynchronousSocketChannel:connect
+[CallGraph] WebSocketsProxyEndpoint:process -> Future:get
+[CallGraph] WebSocketsProxyEndpoint:process -> Session:getBasicRemote
+[CallGraph] WebSocketsProxyEndpoint:process -> Session:sendText
+[CallGraph] WebSocketsProxyEndpoint:process -> HashMap:put
+[CallGraph] WebSocketsProxyEndpoint:process -> Session:getId
+[CallGraph] WebSocketsProxyEndpoint:process -> WebSocketsProxyEndpoint:readFromServer
+[CallGraph] WebSocketsProxyEndpoint:process -> Session:getBasicRemote
+[CallGraph] WebSocketsProxyEndpoint:process -> Session:sendText
+[CallGraph] WebSocketsProxyEndpoint:onOpen -> Session:setMaxBinaryMessageBufferSize
+[CallGraph] WebSocketsProxyEndpoint:onOpen -> Session:setMaxTextMessageBufferSize
+[CallGraph] WebSocketsProxyEndpoint:onOpen -> Session:addMessageHandler
+[CallGraph] WebSocketsProxyEndpoint:onMessage -> ByteBuffer:clear
+[CallGraph] WebSocketsProxyEndpoint:onMessage -> WebSocketsProxyEndpoint:process
+[+]正在分析的文件：ClassDataLoader.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\ClassDataLoader.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] ClassDataLoader:classData -> RequestContextHolder:getRequestAttributes
+[CallGraph] ClassDataLoader:classData -> ServletRequestAttributes:getRequest
+[CallGraph] ClassDataLoader:classData -> HttpServletRequest:getParameter
+[CallGraph] ClassDataLoader:classData -> java.util.Base64:getDecoder
+[CallGraph] ClassDataLoader:classData -> java.util.Base64:decode
+[CallGraph] ClassDataLoader:classData -> ClassLoader:getDeclaredMethod
+[CallGraph] ClassDataLoader:classData -> java:setAccessible
+[CallGraph] ClassDataLoader:classData -> java:invoke
+[CallGraph] ClassDataLoader:classData -> ClassLoader:getSystemClassLoader
+[CallGraph] ClassDataLoader:classData -> Class:newInstance
+[CallGraph] ClassDataLoader:classData -> Logger:error
+[CallGraph] ClassDataLoader:classData -> e:toString
+[+]正在分析的文件：CommandInject.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\CommandInject.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] CommandInject:codeInject -> ProcessBuilder:redirectErrorStream
+[CallGraph] CommandInject:codeInject -> ProcessBuilder:start
+[CallGraph] CommandInject:codeInject -> WebUtils:convertStreamToString
+[CallGraph] CommandInject:codeInject -> Process:getInputStream
+[CallGraph] CommandInject:codeInjectHost -> HttpServletRequest:getHeader
+[CallGraph] CommandInject:codeInjectHost -> Logger:info
+[CallGraph] CommandInject:codeInjectHost -> ProcessBuilder:redirectErrorStream
+[CallGraph] CommandInject:codeInjectHost -> ProcessBuilder:start
+[CallGraph] CommandInject:codeInjectHost -> WebUtils:convertStreamToString
+[CallGraph] CommandInject:codeInjectHost -> Process:getInputStream
+[CallGraph] CommandInject:codeInjectSec -> SecurityUtil:cmdFilter
+[CallGraph] CommandInject:codeInjectSec -> ProcessBuilder:redirectErrorStream
+[CallGraph] CommandInject:codeInjectSec -> ProcessBuilder:start
+[CallGraph] CommandInject:codeInjectSec -> WebUtils:convertStreamToString
+[CallGraph] CommandInject:codeInjectSec -> Process:getInputStream
+[+]正在分析的文件：Cookies.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Cookies.java
+[CallGraph] Cookies:vuln01 -> WebUtils:getCookieValueByName
+[CallGraph] Cookies:vuln02 -> HttpServletRequest:getCookies
+[CallGraph] Cookies:vuln02 -> Cookies:getCookie
+[CallGraph] Cookies:vuln02 -> Cookies:getValue
+[CallGraph] Cookies:vuln03 -> HttpServletRequest:getCookies
+[CallGraph] Cookies:vuln03 -> String:equals
+[CallGraph] Cookies:vuln03 -> Cookie:getName
+[CallGraph] Cookies:vuln03 -> Cookie:getValue
+[CallGraph] Cookies:vuln04 -> HttpServletRequest:getCookies
+[CallGraph] Cookies:vuln04 -> Cookie:getName
+[CallGraph] Cookies:vuln04 -> Cookie:equalsIgnoreCase
+[CallGraph] Cookies:vuln04 -> Cookie:getValue
+[+]正在分析的文件：Cors.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Cors.java
+[CallGraph] Cors:vuls1 -> HttpServletRequest:getHeader
+[CallGraph] Cors:vuls1 -> HttpServletResponse:setHeader
+[CallGraph] Cors:vuls1 -> HttpServletResponse:setHeader
+[CallGraph] Cors:vuls2 -> HttpServletResponse:setHeader
+[CallGraph] Cors:seccode -> HttpServletRequest:getHeader
+[CallGraph] Cors:seccode -> SecurityUtil:checkURL
+[CallGraph] Cors:seccode -> HttpServletResponse:setHeader
+[CallGraph] Cors:seccode -> HttpServletResponse:setHeader
+[CallGraph] Cors:seccode -> LoginUtils:getUserInfo2JsonStr
+[+]正在分析的文件：CRLFInjection.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\CRLFInjection.java
+[CallGraph] CRLFInjection:crlf -> HttpServletResponse:addHeader
+[CallGraph] CRLFInjection:crlf -> HttpServletRequest:getParameter
+[CallGraph] CRLFInjection:crlf -> HttpServletResponse:setHeader
+[CallGraph] CRLFInjection:crlf -> HttpServletRequest:getParameter
+[CallGraph] CRLFInjection:crlf -> HttpServletRequest:getParameter
+[CallGraph] CRLFInjection:crlf -> HttpServletResponse:addCookie
+[+]正在分析的文件：CSRF.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\CSRF.java
+[+]正在分析的文件：Deserialize.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Deserialize.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] Deserialize:rememberMeVul -> Deserialize:getCookie
+[CallGraph] Deserialize:rememberMeVul -> Cookie:getValue
+[CallGraph] Deserialize:rememberMeVul -> Base64:getDecoder
+[CallGraph] Deserialize:rememberMeVul -> Base64:decode
+[CallGraph] Deserialize:rememberMeVul -> AntObjectInputStream:readObject
+[CallGraph] Deserialize:rememberMeVul -> AntObjectInputStream:close
+[CallGraph] Deserialize:rememberMeBlackClassCheck -> Deserialize:getCookie
+[CallGraph] Deserialize:rememberMeBlackClassCheck -> Cookie:getValue
+[CallGraph] Deserialize:rememberMeBlackClassCheck -> Base64:getDecoder
+[CallGraph] Deserialize:rememberMeBlackClassCheck -> Base64:decode
+[CallGraph] Deserialize:rememberMeBlackClassCheck -> AntObjectInputStream:readObject
+[CallGraph] Deserialize:rememberMeBlackClassCheck -> AntObjectInputStream:close
+[CallGraph] Deserialize:rememberMeBlackClassCheck -> Logger:info
+[CallGraph] Deserialize:rememberMeBlackClassCheck -> e:toString
+[CallGraph] Deserialize:rememberMeBlackClassCheck -> e:toString
+[CallGraph] Deserialize:Jackson -> ObjectMapper:enableDefaultTyping
+[CallGraph] Deserialize:Jackson -> ObjectMapper:readValue
+[CallGraph] Deserialize:Jackson -> ObjectMapper:writeValueAsString
+[CallGraph] Deserialize:Jackson -> e:printStackTrace
+[+]正在分析的文件：Dotall.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Dotall.java
+[CallGraph] Dotall:main -> Pattern:compile
+[CallGraph] Dotall:main -> Pattern:compile
+[CallGraph] Dotall:main -> URLDecoder:decode
+[CallGraph] Dotall:main -> StandardCharsets:toString
+[CallGraph] Dotall:main -> System:println
+[CallGraph] Dotall:main -> System:println
+[CallGraph] Dotall:main -> Pattern:matcher
+[CallGraph] Dotall:main -> Pattern:matches
+[CallGraph] Dotall:main -> System:println
+[CallGraph] Dotall:main -> Pattern:matcher
+[CallGraph] Dotall:main -> Pattern:matches
+[+]正在分析的文件：Fastjson.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Fastjson.java
+[CallGraph] Fastjson:Deserialize -> JSON:parseObject
+[CallGraph] Fastjson:Deserialize -> JSONObject:get
+[CallGraph] Fastjson:Deserialize -> JSONObject:toString
+[CallGraph] Fastjson:Deserialize -> e:toString
+[CallGraph] Fastjson:main -> JSON:parseObject
+[+]正在分析的文件：FileUpload.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\FileUpload.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] FileUpload:singleFileUpload -> File:isEmpty
+[CallGraph] FileUpload:singleFileUpload -> RedirectAttributes:addFlashAttribute
+[CallGraph] FileUpload:singleFileUpload -> File:getBytes
+[CallGraph] FileUpload:singleFileUpload -> Paths:get
+[CallGraph] FileUpload:singleFileUpload -> File:getOriginalFilename
+[CallGraph] FileUpload:singleFileUpload -> Files:write
+[CallGraph] FileUpload:singleFileUpload -> RedirectAttributes:addFlashAttribute
+[CallGraph] FileUpload:singleFileUpload -> File:getOriginalFilename
+[CallGraph] FileUpload:singleFileUpload -> RedirectAttributes:addFlashAttribute
+[CallGraph] FileUpload:singleFileUpload -> Logger:error
+[CallGraph] FileUpload:singleFileUpload -> e:toString
+[CallGraph] FileUpload:uploadPicture -> MultipartFile:isEmpty
+[CallGraph] FileUpload:uploadPicture -> MultipartFile:getOriginalFilename
+[CallGraph] FileUpload:uploadPicture -> String:substring
+[CallGraph] FileUpload:uploadPicture -> String:lastIndexOf
+[CallGraph] FileUpload:uploadPicture -> MultipartFile:getContentType
+[CallGraph] FileUpload:uploadPicture -> FileUpload:convert
+[CallGraph] FileUpload:uploadPicture -> String:toLowerCase
+[CallGraph] FileUpload:uploadPicture -> String:equals
+[CallGraph] FileUpload:uploadPicture -> Logger:error
+[CallGraph] FileUpload:uploadPicture -> FileUpload:deleteFile
+[CallGraph] FileUpload:uploadPicture -> SecurityUtil:replaceSpecialStr
+[CallGraph] FileUpload:uploadPicture -> SecurityUtil:toLowerCase
+[CallGraph] FileUpload:uploadPicture -> SecurityUtil:contains
+[CallGraph] FileUpload:uploadPicture -> Logger:error
+[CallGraph] FileUpload:uploadPicture -> FileUpload:deleteFile
+[CallGraph] FileUpload:uploadPicture -> FileUpload:isImage
+[CallGraph] FileUpload:uploadPicture -> FileUpload:deleteFile
+[CallGraph] FileUpload:uploadPicture -> Logger:error
+[CallGraph] FileUpload:uploadPicture -> FileUpload:deleteFile
+[CallGraph] FileUpload:uploadPicture -> MultipartFile:getBytes
+[CallGraph] FileUpload:uploadPicture -> Paths:get
+[CallGraph] FileUpload:uploadPicture -> MultipartFile:getOriginalFilename
+[CallGraph] FileUpload:uploadPicture -> Files:write
+[CallGraph] FileUpload:uploadPicture -> Logger:error
+[CallGraph] FileUpload:uploadPicture -> e:toString
+[CallGraph] FileUpload:uploadPicture -> FileUpload:deleteFile
+[CallGraph] FileUpload:uploadPicture -> Logger:info
+[CallGraph] FileUpload:uploadPicture -> Logger:info
+[CallGraph] FileUpload:uploadPicture -> String:format
+[CallGraph] FileUpload:deleteFile -> File:isFile
+[CallGraph] FileUpload:deleteFile -> File:exists
+[CallGraph] FileUpload:deleteFile -> File:delete
+[CallGraph] FileUpload:deleteFile -> Logger:info
+[CallGraph] FileUpload:deleteFile -> Logger:info
+[CallGraph] FileUpload:convert -> MultipartFile:getOriginalFilename
+[CallGraph] FileUpload:convert -> String:substring
+[CallGraph] FileUpload:convert -> String:lastIndexOf
+[CallGraph] FileUpload:convert -> Generators:timeBasedGenerator
+[CallGraph] FileUpload:convert -> Generators:generate
+[CallGraph] FileUpload:convert -> File:createNewFile
+[CallGraph] FileUpload:convert -> FileOutputStream:write
+[CallGraph] FileUpload:convert -> MultipartFile:getBytes
+[CallGraph] FileUpload:convert -> FileOutputStream:close
+[CallGraph] FileUpload:isImage -> ImageIO:read
+[+]正在分析的文件：GetRequestURI.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\GetRequestURI.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] GetRequestURI:exclued -> HttpServletRequest:getRequestURI
+[CallGraph] GetRequestURI:exclued -> Logger:info
+[CallGraph] GetRequestURI:exclued -> Logger:info
+[CallGraph] GetRequestURI:exclued -> HttpServletRequest:getServletPath
+[CallGraph] GetRequestURI:exclued -> PathMatcher:match
+[+]正在分析的文件：Index.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Index.java
+[CallGraph] Index:appInfo -> HttpServletRequest:getUserPrincipal
+[CallGraph] Index:appInfo -> HttpServletRequest:getName
+[CallGraph] Index:appInfo -> Map:put
+[CallGraph] Index:appInfo -> ServerInfo:getServerInfo
+[CallGraph] Index:appInfo -> Map:put
+[CallGraph] Index:appInfo -> Map:put
+[CallGraph] Index:appInfo -> Map:put
+[CallGraph] Index:appInfo -> Map:put
+[CallGraph] Index:appInfo -> System:getProperty
+[CallGraph] Index:appInfo -> Map:put
+[CallGraph] Index:appInfo -> JSON:toJSONString
+[CallGraph] Index:index -> HttpServletRequest:getUserPrincipal
+[CallGraph] Index:index -> HttpServletRequest:getName
+[CallGraph] Index:index -> Model:addAttribute
+[+]正在分析的文件：IPForge.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\IPForge.java
+[CallGraph] IPForge:noProxy -> HttpServletRequest:getRemoteAddr
+[CallGraph] IPForge:proxy -> HttpServletRequest:getHeader
+[CallGraph] IPForge:proxy -> StringUtils:isNotBlank
+[CallGraph] IPForge:proxy -> HttpServletRequest:getRemoteAddr
+[CallGraph] IPForge:proxy -> StringUtils:isNotBlank
+[+]正在分析的文件：Jdbc.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Jdbc.java
+[CallGraph] Jdbc:postgresql -> java.util.Base64:getDecoder
+[CallGraph] Jdbc:postgresql -> java.util.Base64:decode
+[CallGraph] Jdbc:postgresql -> log:info
+[CallGraph] Jdbc:postgresql -> DriverManager:getConnection
+[CallGraph] Jdbc:db2 -> Class:forName
+[CallGraph] Jdbc:db2 -> java.util.Base64:getDecoder
+[CallGraph] Jdbc:db2 -> java.util.Base64:decode
+[CallGraph] Jdbc:db2 -> log:info
+[CallGraph] Jdbc:db2 -> DriverManager:getConnection
+[+]正在分析的文件：Jsonp.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Jsonp.java
+[CallGraph] unknown:unknown -> WebConfig:getBusinessCallback
+[CallGraph] Jsonp:referer -> HttpServletRequest:getParameter
+[CallGraph] Jsonp:referer -> WebUtils:json2Jsonp
+[CallGraph] Jsonp:referer -> LoginUtils:getUserInfo2JsonStr
+[CallGraph] Jsonp:emptyReferer -> HttpServletRequest:getHeader
+[CallGraph] Jsonp:emptyReferer -> SecurityUtil:checkURL
+[CallGraph] Jsonp:emptyReferer -> HttpServletRequest:getParameter
+[CallGraph] Jsonp:emptyReferer -> WebUtils:json2Jsonp
+[CallGraph] Jsonp:emptyReferer -> LoginUtils:getUserInfo2JsonStr
+[CallGraph] Jsonp:advice -> JSON:parseObject
+[CallGraph] Jsonp:advice -> LoginUtils:getUserInfo2JsonStr
+[CallGraph] Jsonp:mappingJackson2JsonView -> HttpServletRequest:getUserPrincipal
+[CallGraph] Jsonp:mappingJackson2JsonView -> ModelAndView:addObject
+[CallGraph] Jsonp:mappingJackson2JsonView -> Principal:getName
+[CallGraph] Jsonp:safecode -> HttpServletRequest:getHeader
+[CallGraph] Jsonp:safecode -> SecurityUtil:checkURL
+[CallGraph] Jsonp:safecode -> HttpServletRequest:getParameter
+[CallGraph] Jsonp:safecode -> WebUtils:json2Jsonp
+[CallGraph] Jsonp:safecode -> LoginUtils:getUserInfo2JsonStr
+[CallGraph] Jsonp:getCsrfToken2 -> CookieCsrfTokenRepository:loadToken
+[CallGraph] Jsonp:getCsrfToken2 -> HttpServletRequest:getParameter
+[CallGraph] Jsonp:getCsrfToken2 -> StringUtils:isNotBlank
+[CallGraph] Jsonp:getCsrfToken2 -> JSONPObject:addParameter
+[CallGraph] Jsonp:getCsrfToken2 -> JSONPObject:toString
+[CallGraph] Jsonp:getCsrfToken2 -> CsrfToken:toString
+[+]正在分析的文件：Jwt.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Jwt.java
+[CallGraph] Jwt:createToken -> HttpServletRequest:getUserPrincipal
+[CallGraph] Jwt:createToken -> HttpServletRequest:getName
+[CallGraph] Jwt:createToken -> log:info
+[CallGraph] Jwt:createToken -> CookieUtils:deleteCookie
+[CallGraph] Jwt:createToken -> String:format
+[CallGraph] Jwt:createToken -> JwtUtils:generateTokenByJavaJwt
+[CallGraph] Jwt:createToken -> Cookie:setMaxAge
+[CallGraph] Jwt:createToken -> Cookie:setPath
+[CallGraph] Jwt:createToken -> Cookie:setSecure
+[CallGraph] Jwt:createToken -> HttpServletResponse:addCookie
+[CallGraph] Jwt:getNickname -> JwtUtils:getNicknameByJavaJwt
+[+]正在分析的文件：Log4j.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Log4j.java
+[CallGraph] unknown:unknown -> LogManager:getLogger
+[CallGraph] Log4j:log4j -> Logger:error
+[CallGraph] Log4j:main -> Logger:error
+[+]正在分析的文件：Login.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Login.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] Login:logoutPage -> HttpServletRequest:getUserPrincipal
+[CallGraph] Login:logoutPage -> HttpServletRequest:getName
+[CallGraph] Login:logoutPage -> SecurityContextHolder:getContext
+[CallGraph] Login:logoutPage -> SecurityContextHolder:getAuthentication
+[CallGraph] Login:logoutPage -> SecurityContextLogoutHandler:logout
+[CallGraph] Login:logoutPage -> Cookie:setMaxAge
+[CallGraph] Login:logoutPage -> Cookie:setPath
+[CallGraph] Login:logoutPage -> HttpServletResponse:addCookie
+[CallGraph] Login:logoutPage -> HttpServletRequest:getUserPrincipal
+[CallGraph] Login:logoutPage -> Logger:info
+[CallGraph] Login:logoutPage -> Logger:info
+[+]正在分析的文件：PathTraversal.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\PathTraversal.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] PathTraversal:getImage -> PathTraversal:getImgBase64
+[CallGraph] PathTraversal:getImageSec -> SecurityUtil:pathFilter
+[CallGraph] PathTraversal:getImageSec -> Logger:info
+[CallGraph] PathTraversal:getImageSec -> PathTraversal:getImgBase64
+[CallGraph] PathTraversal:getImgBase64 -> Logger:info
+[CallGraph] PathTraversal:getImgBase64 -> System:getProperty
+[CallGraph] PathTraversal:getImgBase64 -> Logger:info
+[CallGraph] PathTraversal:getImgBase64 -> File:exists
+[CallGraph] PathTraversal:getImgBase64 -> File:isDirectory
+[CallGraph] PathTraversal:getImgBase64 -> Files:readAllBytes
+[CallGraph] PathTraversal:getImgBase64 -> Paths:get
+[CallGraph] PathTraversal:getImgBase64 -> Base64:encodeBase64
+[CallGraph] PathTraversal:main -> Files:readAllBytes
+[CallGraph] PathTraversal:main -> Paths:get
+[CallGraph] PathTraversal:main -> System:println
+[+]正在分析的文件：QLExpress.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\QLExpress.java
+[CallGraph] QLExpress:vuln1 -> WebUtils:getRequestBody
+[CallGraph] QLExpress:vuln1 -> System:println
+[CallGraph] QLExpress:vuln1 -> ExpressRunner:execute
+[CallGraph] QLExpress:vuln1 -> System:println
+[CallGraph] QLExpress:vuln1 -> Object:toString
+[CallGraph] QLExpress:sec -> WebUtils:getRequestBody
+[CallGraph] QLExpress:sec -> System:println
+[CallGraph] QLExpress:sec -> QLExpressRunStrategy:setForbidInvokeSecurityRiskMethods
+[CallGraph] QLExpress:sec -> QLExpressRunStrategy:addSecureMethod
+[CallGraph] QLExpress:sec -> ExpressRunner:execute
+[CallGraph] QLExpress:sec -> System:println
+[CallGraph] QLExpress:sec -> Object:toString
+[+]正在分析的文件：Rce.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Rce.java
+[CallGraph] Rce:CommandExec -> Runtime:getRuntime
+[CallGraph] Rce:CommandExec -> Runtime:exec
+[CallGraph] Rce:CommandExec -> Process:getInputStream
+[CallGraph] Rce:CommandExec -> BufferedReader:readLine
+[CallGraph] Rce:CommandExec -> StringBuilder:append
+[CallGraph] Rce:CommandExec -> Process:waitFor
+[CallGraph] Rce:CommandExec -> Process:exitValue
+[CallGraph] Rce:CommandExec -> BufferedReader:close
+[CallGraph] Rce:CommandExec -> BufferedInputStream:close
+[CallGraph] Rce:CommandExec -> e:toString
+[CallGraph] Rce:CommandExec -> StringBuilder:toString
+[CallGraph] Rce:processBuilder -> ProcessBuilder:start
+[CallGraph] Rce:processBuilder -> Process:getInputStream
+[CallGraph] Rce:processBuilder -> BufferedReader:readLine
+[CallGraph] Rce:processBuilder -> StringBuilder:append
+[CallGraph] Rce:processBuilder -> e:toString
+[CallGraph] Rce:processBuilder -> StringBuilder:toString
+[CallGraph] Rce:jsEngine -> ScriptEngineManager:getEngineByName
+[CallGraph] Rce:jsEngine -> ScriptEngine:getBindings
+[CallGraph] Rce:jsEngine -> String:format
+[CallGraph] Rce:jsEngine -> ScriptEngine:eval
+[CallGraph] Rce:yarm -> Yaml:load
+[CallGraph] Rce:secYarm -> Yaml:load
+[CallGraph] Rce:groovyshell -> GroovyShell:evaluate
+[CallGraph] Rce:main -> Runtime:getRuntime
+[CallGraph] Rce:main -> Runtime:exec
+[+]正在分析的文件：Shiro.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\Shiro.java
+[CallGraph] unknown:unknown -> java.util.Base64:getDecoder
+[CallGraph] unknown:unknown -> java.util.Base64:decode
+[CallGraph] Shiro:shiro_deserialize -> Shiro:getCookie
+[CallGraph] Shiro:shiro_deserialize -> Cookie:getValue
+[CallGraph] Shiro:shiro_deserialize -> java.util.Base64:getDecoder
+[CallGraph] Shiro:shiro_deserialize -> java.util.Base64:decode
+[CallGraph] Shiro:shiro_deserialize -> AesCipherService:decrypt
+[CallGraph] Shiro:shiro_deserialize -> AesCipherService:getBytes
+[CallGraph] Shiro:shiro_deserialize -> ObjectInputStream:readObject
+[CallGraph] Shiro:shiro_deserialize -> ObjectInputStream:close
+[CallGraph] Shiro:shiro_deserialize -> CookieUtils:addCookie
+[CallGraph] Shiro:shiro_deserialize -> log:error
+[CallGraph] Shiro:shiro_deserialize -> e:getMessage
+[+]正在分析的文件：SpEL.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\SpEL.java
+[CallGraph] SpEL:spel_vuln1 -> ExpressionParser:parseExpression
+[CallGraph] SpEL:spel_vuln1 -> ExpressionParser:getValue
+[CallGraph] SpEL:spel_vuln1 -> ExpressionParser:toString
+[CallGraph] SpEL:spel_vuln2 -> ExpressionParser:parseExpression
+[CallGraph] SpEL:spel_vuln2 -> String:getValue
+[CallGraph] SpEL:spel_vuln2 -> Object:toString
+[CallGraph] SpEL:spel_sec -> SimpleEvaluationContext:forReadOnlyDataBinding
+[CallGraph] SpEL:spel_sec -> SimpleEvaluationContext:build
+[CallGraph] SpEL:spel_sec -> ExpressionParser:parseExpression
+[CallGraph] SpEL:spel_sec -> String:getValue
+[CallGraph] SpEL:spel_sec -> Object:toString
+[CallGraph] SpEL:main -> ExpressionParser:parseExpression
+[CallGraph] SpEL:main -> ExpressionParser:getValue
+[CallGraph] SpEL:main -> ExpressionParser:toString
+[CallGraph] SpEL:main -> System:println
+[+]正在分析的文件：SQLI.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\SQLI.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] SQLI:jdbc_sqli_vul -> Class:forName
+[CallGraph] SQLI:jdbc_sqli_vul -> DriverManager:getConnection
+[CallGraph] SQLI:jdbc_sqli_vul -> Connection:isClosed
+[CallGraph] SQLI:jdbc_sqli_vul -> System:println
+[CallGraph] SQLI:jdbc_sqli_vul -> Connection:createStatement
+[CallGraph] SQLI:jdbc_sqli_vul -> Logger:info
+[CallGraph] SQLI:jdbc_sqli_vul -> Statement:executeQuery
+[CallGraph] SQLI:jdbc_sqli_vul -> ResultSet:next
+[CallGraph] SQLI:jdbc_sqli_vul -> ResultSet:getString
+[CallGraph] SQLI:jdbc_sqli_vul -> ResultSet:getString
+[CallGraph] SQLI:jdbc_sqli_vul -> String:format
+[CallGraph] SQLI:jdbc_sqli_vul -> StringBuilder:append
+[CallGraph] SQLI:jdbc_sqli_vul -> Logger:info
+[CallGraph] SQLI:jdbc_sqli_vul -> ResultSet:close
+[CallGraph] SQLI:jdbc_sqli_vul -> Connection:close
+[CallGraph] SQLI:jdbc_sqli_vul -> Logger:error
+[CallGraph] SQLI:jdbc_sqli_vul -> Logger:error
+[CallGraph] SQLI:jdbc_sqli_vul -> e:toString
+[CallGraph] SQLI:jdbc_sqli_vul -> StringBuilder:toString
+[CallGraph] SQLI:jdbc_sqli_sec -> Class:forName
+[CallGraph] SQLI:jdbc_sqli_sec -> DriverManager:getConnection
+[CallGraph] SQLI:jdbc_sqli_sec -> Connection:isClosed
+[CallGraph] SQLI:jdbc_sqli_sec -> System:println
+[CallGraph] SQLI:jdbc_sqli_sec -> Connection:prepareStatement
+[CallGraph] SQLI:jdbc_sqli_sec -> PreparedStatement:setString
+[CallGraph] SQLI:jdbc_sqli_sec -> Logger:info
+[CallGraph] SQLI:jdbc_sqli_sec -> PreparedStatement:toString
+[CallGraph] SQLI:jdbc_sqli_sec -> PreparedStatement:executeQuery
+[CallGraph] SQLI:jdbc_sqli_sec -> ResultSet:next
+[CallGraph] SQLI:jdbc_sqli_sec -> ResultSet:getString
+[CallGraph] SQLI:jdbc_sqli_sec -> ResultSet:getString
+[CallGraph] SQLI:jdbc_sqli_sec -> String:format
+[CallGraph] SQLI:jdbc_sqli_sec -> StringBuilder:append
+[CallGraph] SQLI:jdbc_sqli_sec -> Logger:info
+[CallGraph] SQLI:jdbc_sqli_sec -> ResultSet:close
+[CallGraph] SQLI:jdbc_sqli_sec -> Connection:close
+[CallGraph] SQLI:jdbc_sqli_sec -> Logger:error
+[CallGraph] SQLI:jdbc_sqli_sec -> e:printStackTrace
+[CallGraph] SQLI:jdbc_sqli_sec -> Logger:error
+[CallGraph] SQLI:jdbc_sqli_sec -> e:toString
+[CallGraph] SQLI:jdbc_sqli_sec -> StringBuilder:toString
+[CallGraph] SQLI:jdbc_ps_vuln -> Class:forName
+[CallGraph] SQLI:jdbc_ps_vuln -> DriverManager:getConnection
+[CallGraph] SQLI:jdbc_ps_vuln -> Connection:isClosed
+[CallGraph] SQLI:jdbc_ps_vuln -> System:println
+[CallGraph] SQLI:jdbc_ps_vuln -> Connection:prepareStatement
+[CallGraph] SQLI:jdbc_ps_vuln -> Logger:info
+[CallGraph] SQLI:jdbc_ps_vuln -> PreparedStatement:toString
+[CallGraph] SQLI:jdbc_ps_vuln -> PreparedStatement:executeQuery
+[CallGraph] SQLI:jdbc_ps_vuln -> ResultSet:next
+[CallGraph] SQLI:jdbc_ps_vuln -> ResultSet:getString
+[CallGraph] SQLI:jdbc_ps_vuln -> ResultSet:getString
+[CallGraph] SQLI:jdbc_ps_vuln -> String:format
+[CallGraph] SQLI:jdbc_ps_vuln -> StringBuilder:append
+[CallGraph] SQLI:jdbc_ps_vuln -> Logger:info
+[CallGraph] SQLI:jdbc_ps_vuln -> ResultSet:close
+[CallGraph] SQLI:jdbc_ps_vuln -> Connection:close
+[CallGraph] SQLI:jdbc_ps_vuln -> Logger:error
+[CallGraph] SQLI:jdbc_ps_vuln -> e:printStackTrace
+[CallGraph] SQLI:jdbc_ps_vuln -> Logger:error
+[CallGraph] SQLI:jdbc_ps_vuln -> e:toString
+[CallGraph] SQLI:jdbc_ps_vuln -> StringBuilder:toString
+[CallGraph] SQLI:mybatisVuln01 -> UserMapper:findByUserNameVuln01
+[CallGraph] SQLI:mybatisVuln02 -> UserMapper:findByUserNameVuln02
+[CallGraph] SQLI:mybatisVuln03 -> UserMapper:findByUserNameVuln03
+[CallGraph] SQLI:mybatisSec01 -> UserMapper:findByUserName
+[CallGraph] SQLI:mybatisSec02 -> UserMapper:findById
+[CallGraph] SQLI:mybatisSec03 -> UserMapper:OrderByUsername
+[CallGraph] SQLI:mybatisOrderBySec04 -> UserMapper:findByUserNameVuln03
+[CallGraph] SQLI:mybatisOrderBySec04 -> SecurityUtil:sqlFilter
+[+]正在分析的文件：SSRF.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\SSRF.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] SSRF:URLConnectionVuln -> HttpUtils:URLConnection
+[CallGraph] SSRF:URLConnectionSec -> SecurityUtil:isHttp
+[CallGraph] SSRF:URLConnectionSec -> SecurityUtil:startSSRFHook
+[CallGraph] SSRF:URLConnectionSec -> HttpUtils:URLConnection
+[CallGraph] SSRF:URLConnectionSec -> e:getMessage
+[CallGraph] SSRF:URLConnectionSec -> SecurityUtil:stopSSRFHook
+[CallGraph] SSRF:httpURLConnection -> SecurityUtil:startSSRFHook
+[CallGraph] SSRF:httpURLConnection -> HttpUtils:HttpURLConnection
+[CallGraph] SSRF:httpURLConnection -> e:getMessage
+[CallGraph] SSRF:httpURLConnection -> SecurityUtil:stopSSRFHook
+[CallGraph] SSRF:httpURLConnectionVuln -> HttpUtils:HttpURLConnection
+[CallGraph] SSRF:request -> SecurityUtil:startSSRFHook
+[CallGraph] SSRF:request -> HttpUtils:request
+[CallGraph] SSRF:request -> e:getMessage
+[CallGraph] SSRF:request -> SecurityUtil:stopSSRFHook
+[CallGraph] SSRF:openStream -> WebUtils:getNameWithoutExtension
+[CallGraph] SSRF:openStream -> WebUtils:getFileExtension
+[CallGraph] SSRF:openStream -> HttpServletResponse:setHeader
+[CallGraph] SSRF:openStream -> URL:openStream
+[CallGraph] SSRF:openStream -> HttpServletResponse:getOutputStream
+[CallGraph] SSRF:openStream -> InputStream:read
+[CallGraph] SSRF:openStream -> OutputStream:write
+[CallGraph] SSRF:openStream -> Logger:error
+[CallGraph] SSRF:openStream -> e:toString
+[CallGraph] SSRF:openStream -> InputStream:close
+[CallGraph] SSRF:openStream -> OutputStream:close
+[CallGraph] SSRF:ImageIO -> SecurityUtil:startSSRFHook
+[CallGraph] SSRF:ImageIO -> HttpUtils:imageIO
+[CallGraph] SSRF:ImageIO -> e:getMessage
+[CallGraph] SSRF:ImageIO -> SecurityUtil:stopSSRFHook
+[CallGraph] SSRF:okhttp -> SecurityUtil:startSSRFHook
+[CallGraph] SSRF:okhttp -> HttpUtils:okhttp
+[CallGraph] SSRF:okhttp -> e:getMessage
+[CallGraph] SSRF:okhttp -> SecurityUtil:stopSSRFHook
+[CallGraph] SSRF:HttpClient -> SecurityUtil:startSSRFHook
+[CallGraph] SSRF:HttpClient -> HttpUtils:httpClient
+[CallGraph] SSRF:HttpClient -> e:getMessage
+[CallGraph] SSRF:HttpClient -> SecurityUtil:stopSSRFHook
+[CallGraph] SSRF:commonsHttpClient -> SecurityUtil:startSSRFHook
+[CallGraph] SSRF:commonsHttpClient -> HttpUtils:commonHttpClient
+[CallGraph] SSRF:commonsHttpClient -> e:getMessage
+[CallGraph] SSRF:commonsHttpClient -> SecurityUtil:stopSSRFHook
+[CallGraph] SSRF:Jsoup -> SecurityUtil:startSSRFHook
+[CallGraph] SSRF:Jsoup -> HttpUtils:Jsoup
+[CallGraph] SSRF:Jsoup -> e:getMessage
+[CallGraph] SSRF:Jsoup -> SecurityUtil:stopSSRFHook
+[CallGraph] SSRF:IOUtils -> SecurityUtil:startSSRFHook
+[CallGraph] SSRF:IOUtils -> HttpUtils:IOUtils
+[CallGraph] SSRF:IOUtils -> e:getMessage
+[CallGraph] SSRF:IOUtils -> SecurityUtil:stopSSRFHook
+[CallGraph] SSRF:HttpSyncClients -> HttpUtils:HttpAsyncClients
+[CallGraph] SSRF:RestTemplateUrlBanRedirects -> HttpHeaders:setContentType
+[CallGraph] SSRF:RestTemplateUrlBanRedirects -> HttpService:RequestHttpBanRedirects
+[CallGraph] SSRF:RestTemplateUrl -> HttpHeaders:setContentType
+[CallGraph] SSRF:RestTemplateUrl -> HttpService:RequestHttp
+[CallGraph] SSRF:hutoolHttp -> HttpUtil:get
+[CallGraph] SSRF:DnsRebind -> java.security.Security:setProperty
+[CallGraph] SSRF:DnsRebind -> SecurityUtil:checkSSRFWithoutRedirect
+[CallGraph] SSRF:DnsRebind -> HttpUtil:get
+[+]正在分析的文件：SSTI.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\SSTI.java
+[CallGraph] SSTI:velocity -> Velocity:init
+[CallGraph] SSTI:velocity -> VelocityContext:put
+[CallGraph] SSTI:velocity -> VelocityContext:put
+[CallGraph] SSTI:velocity -> VelocityContext:put
+[CallGraph] SSTI:velocity -> Velocity:evaluate
+[+]正在分析的文件：URLRedirect.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\URLRedirect.java
+[CallGraph] URLRedirect:setHeader -> HttpServletRequest:getParameter
+[CallGraph] URLRedirect:setHeader -> HttpServletResponse:setStatus
+[CallGraph] URLRedirect:setHeader -> HttpServletResponse:setHeader
+[CallGraph] URLRedirect:sendRedirect -> HttpServletRequest:getParameter
+[CallGraph] URLRedirect:sendRedirect -> HttpServletResponse:sendRedirect
+[CallGraph] URLRedirect:forward -> HttpServletRequest:getParameter
+[CallGraph] URLRedirect:forward -> HttpServletRequest:getRequestDispatcher
+[CallGraph] URLRedirect:forward -> RequestDispatcher:forward
+[CallGraph] URLRedirect:forward -> e:printStackTrace
+[CallGraph] URLRedirect:sendRedirect_seccode -> HttpServletRequest:getParameter
+[CallGraph] URLRedirect:sendRedirect_seccode -> SecurityUtil:checkURL
+[CallGraph] URLRedirect:sendRedirect_seccode -> HttpServletResponse:setStatus
+[CallGraph] URLRedirect:sendRedirect_seccode -> HttpServletResponse:getWriter
+[CallGraph] URLRedirect:sendRedirect_seccode -> HttpServletResponse:write
+[CallGraph] URLRedirect:sendRedirect_seccode -> HttpServletResponse:sendRedirect
+[+]正在分析的文件：URLWhiteList.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\URLWhiteList.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] URLWhiteList:endsWith -> SecurityUtil:gethost
+[CallGraph] URLWhiteList:endsWith -> String:endsWith
+[CallGraph] URLWhiteList:contains -> SecurityUtil:gethost
+[CallGraph] URLWhiteList:contains -> String:contains
+[CallGraph] URLWhiteList:regex -> SecurityUtil:gethost
+[CallGraph] URLWhiteList:regex -> Pattern:compile
+[CallGraph] URLWhiteList:regex -> Pattern:matcher
+[CallGraph] URLWhiteList:regex -> Matcher:find
+[CallGraph] URLWhiteList:url_bypass -> Logger:info
+[CallGraph] URLWhiteList:url_bypass -> SecurityUtil:isHttp
+[CallGraph] URLWhiteList:url_bypass -> URL:getHost
+[CallGraph] URLWhiteList:url_bypass -> Logger:info
+[CallGraph] URLWhiteList:url_bypass -> String:endsWith
+[CallGraph] URLWhiteList:url_bypass -> HttpServletResponse:sendRedirect
+[CallGraph] URLWhiteList:sec -> SecurityUtil:isHttp
+[CallGraph] URLWhiteList:sec -> SecurityUtil:gethost
+[CallGraph] URLWhiteList:sec -> whiteHost:startsWith
+[CallGraph] URLWhiteList:sec -> String:endsWith
+[CallGraph] URLWhiteList:sec -> whiteHost:startsWith
+[CallGraph] URLWhiteList:sec -> String:equals
+[CallGraph] URLWhiteList:sec_array_indexOf -> ArrayList:add
+[CallGraph] URLWhiteList:sec_array_indexOf -> ArrayList:add
+[CallGraph] URLWhiteList:sec_array_indexOf -> SecurityUtil:isHttp
+[CallGraph] URLWhiteList:sec_array_indexOf -> SecurityUtil:gethost
+[CallGraph] URLWhiteList:sec_array_indexOf -> ArrayList:indexOf
+[+]正在分析的文件：WebSockets.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\WebSockets.java
+[CallGraph] WebSockets:cmdInject -> HttpServletRequest:getParameter
+[CallGraph] WebSockets:cmdInject -> HttpServletRequest:getServletContext
+[CallGraph] WebSockets:cmdInject -> ServerEndpointConfig:create
+[CallGraph] WebSockets:cmdInject -> ServerEndpointConfig:build
+[CallGraph] WebSockets:cmdInject -> ServletContext:getAttribute
+[CallGraph] WebSockets:cmdInject -> ServerContainer:getName
+[CallGraph] WebSockets:cmdInject -> WsServerContainer:findMapping
+[CallGraph] WebSockets:cmdInject -> WsServerContainer:addEndpoint
+[CallGraph] WebSockets:cmdInject -> System:println
+[CallGraph] WebSockets:cmdInject -> System:println
+[CallGraph] WebSockets:cmdInject -> e:toString
+[CallGraph] WebSockets:proxyInject -> HttpServletRequest:getParameter
+[CallGraph] WebSockets:proxyInject -> HttpServletRequest:getServletContext
+[CallGraph] WebSockets:proxyInject -> ServerEndpointConfig:create
+[CallGraph] WebSockets:proxyInject -> ServerEndpointConfig:build
+[CallGraph] WebSockets:proxyInject -> ServletContext:getAttribute
+[CallGraph] WebSockets:proxyInject -> ServerContainer:getName
+[CallGraph] WebSockets:proxyInject -> WsServerContainer:findMapping
+[CallGraph] WebSockets:proxyInject -> WsServerContainer:addEndpoint
+[CallGraph] WebSockets:proxyInject -> System:println
+[CallGraph] WebSockets:proxyInject -> System:println
+[CallGraph] WebSockets:proxyInject -> e:toString
+[+]正在分析的文件：XSS.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\XSS.java
+[CallGraph] XSS:store -> HttpServletResponse:addCookie
+[CallGraph] XSS:safe -> XSS:encode
+[CallGraph] XSS:encode -> StringUtils:replace
+[CallGraph] XSS:encode -> StringUtils:replace
+[CallGraph] XSS:encode -> StringUtils:replace
+[CallGraph] XSS:encode -> StringUtils:replace
+[CallGraph] XSS:encode -> StringUtils:replace
+[CallGraph] XSS:encode -> StringUtils:replace
+[+]正在分析的文件：XStreamRce.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\XStreamRce.java
+[CallGraph] XStreamRce:parseXml -> WebUtils:getRequestBody
+[CallGraph] XStreamRce:parseXml -> XStream:addPermission
+[CallGraph] XStreamRce:parseXml -> XStream:fromXML
+[+]正在分析的文件：XXE.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\XXE.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] XXE:xmlReaderVuln -> WebUtils:getRequestBody
+[CallGraph] XXE:xmlReaderVuln -> Logger:info
+[CallGraph] XXE:xmlReaderVuln -> XMLReaderFactory:createXMLReader
+[CallGraph] XXE:xmlReaderVuln -> XMLReader:parse
+[CallGraph] XXE:xmlReaderVuln -> Logger:error
+[CallGraph] XXE:xmlReaderVuln -> e:toString
+[CallGraph] XXE:xmlReaderSec -> WebUtils:getRequestBody
+[CallGraph] XXE:xmlReaderSec -> Logger:info
+[CallGraph] XXE:xmlReaderSec -> XMLReaderFactory:createXMLReader
+[CallGraph] XXE:xmlReaderSec -> XMLReader:setFeature
+[CallGraph] XXE:xmlReaderSec -> XMLReader:setFeature
+[CallGraph] XXE:xmlReaderSec -> XMLReader:setFeature
+[CallGraph] XXE:xmlReaderSec -> XMLReader:parse
+[CallGraph] XXE:xmlReaderSec -> Logger:error
+[CallGraph] XXE:xmlReaderSec -> e:toString
+[CallGraph] XXE:SAXBuilderVuln -> WebUtils:getRequestBody
+[CallGraph] XXE:SAXBuilderVuln -> Logger:info
+[CallGraph] XXE:SAXBuilderVuln -> SAXBuilder:build
+[CallGraph] XXE:SAXBuilderVuln -> Logger:error
+[CallGraph] XXE:SAXBuilderVuln -> e:toString
+[CallGraph] XXE:SAXBuilderSec -> WebUtils:getRequestBody
+[CallGraph] XXE:SAXBuilderSec -> Logger:info
+[CallGraph] XXE:SAXBuilderSec -> SAXBuilder:setFeature
+[CallGraph] XXE:SAXBuilderSec -> SAXBuilder:setFeature
+[CallGraph] XXE:SAXBuilderSec -> SAXBuilder:setFeature
+[CallGraph] XXE:SAXBuilderSec -> SAXBuilder:build
+[CallGraph] XXE:SAXBuilderSec -> Logger:error
+[CallGraph] XXE:SAXBuilderSec -> e:toString
+[CallGraph] XXE:SAXReaderVuln -> WebUtils:getRequestBody
+[CallGraph] XXE:SAXReaderVuln -> Logger:info
+[CallGraph] XXE:SAXReaderVuln -> SAXReader:read
+[CallGraph] XXE:SAXReaderVuln -> Logger:error
+[CallGraph] XXE:SAXReaderVuln -> e:toString
+[CallGraph] XXE:SAXReaderSec -> WebUtils:getRequestBody
+[CallGraph] XXE:SAXReaderSec -> Logger:info
+[CallGraph] XXE:SAXReaderSec -> SAXReader:setFeature
+[CallGraph] XXE:SAXReaderSec -> SAXReader:setFeature
+[CallGraph] XXE:SAXReaderSec -> SAXReader:setFeature
+[CallGraph] XXE:SAXReaderSec -> SAXReader:read
+[CallGraph] XXE:SAXReaderSec -> Logger:error
+[CallGraph] XXE:SAXReaderSec -> e:toString
+[CallGraph] XXE:SAXParserVuln -> WebUtils:getRequestBody
+[CallGraph] XXE:SAXParserVuln -> Logger:info
+[CallGraph] XXE:SAXParserVuln -> SAXParserFactory:newInstance
+[CallGraph] XXE:SAXParserVuln -> SAXParserFactory:newSAXParser
+[CallGraph] XXE:SAXParserVuln -> SAXParser:parse
+[CallGraph] XXE:SAXParserVuln -> Logger:error
+[CallGraph] XXE:SAXParserVuln -> e:toString
+[CallGraph] XXE:SAXParserSec -> WebUtils:getRequestBody
+[CallGraph] XXE:SAXParserSec -> Logger:info
+[CallGraph] XXE:SAXParserSec -> SAXParserFactory:newInstance
+[CallGraph] XXE:SAXParserSec -> SAXParserFactory:setFeature
+[CallGraph] XXE:SAXParserSec -> SAXParserFactory:setFeature
+[CallGraph] XXE:SAXParserSec -> SAXParserFactory:setFeature
+[CallGraph] XXE:SAXParserSec -> SAXParserFactory:newSAXParser
+[CallGraph] XXE:SAXParserSec -> SAXParser:parse
+[CallGraph] XXE:SAXParserSec -> Logger:error
+[CallGraph] XXE:SAXParserSec -> e:toString
+[CallGraph] XXE:DigesterVuln -> WebUtils:getRequestBody
+[CallGraph] XXE:DigesterVuln -> Logger:info
+[CallGraph] XXE:DigesterVuln -> Digester:parse
+[CallGraph] XXE:DigesterVuln -> Logger:error
+[CallGraph] XXE:DigesterVuln -> e:toString
+[CallGraph] XXE:DigesterSec -> WebUtils:getRequestBody
+[CallGraph] XXE:DigesterSec -> Logger:info
+[CallGraph] XXE:DigesterSec -> Digester:setFeature
+[CallGraph] XXE:DigesterSec -> Digester:setFeature
+[CallGraph] XXE:DigesterSec -> Digester:setFeature
+[CallGraph] XXE:DigesterSec -> Digester:parse
+[CallGraph] XXE:DigesterSec -> Logger:error
+[CallGraph] XXE:DigesterSec -> e:toString
+[CallGraph] XXE:DocumentBuilderVuln -> DocumentBuilderFactory:newInstance
+[CallGraph] XXE:DocumentBuilderVuln -> DocumentBuilderFactory:newDocumentBuilder
+[CallGraph] XXE:DocumentBuilderVuln -> HttpServletRequest:getInputStream
+[CallGraph] XXE:DocumentBuilderVuln -> DocumentBuilder:parse
+[CallGraph] XXE:DocumentBuilderVuln -> Document:getChildNodes
+[CallGraph] XXE:DocumentBuilderVuln -> NodeList:getLength
+[CallGraph] XXE:DocumentBuilderVuln -> NodeList:item
+[CallGraph] XXE:DocumentBuilderVuln -> Node:getChildNodes
+[CallGraph] XXE:DocumentBuilderVuln -> NodeList:getLength
+[CallGraph] XXE:DocumentBuilderVuln -> NodeList:item
+[CallGraph] XXE:DocumentBuilderVuln -> StringBuilder:append
+[CallGraph] XXE:DocumentBuilderVuln -> String:format
+[CallGraph] XXE:DocumentBuilderVuln -> Node:getNodeName
+[CallGraph] XXE:DocumentBuilderVuln -> Node:getTextContent
+[CallGraph] XXE:DocumentBuilderVuln -> StringBuilder:toString
+[CallGraph] XXE:DocumentBuilderVuln -> e:printStackTrace
+[CallGraph] XXE:DocumentBuilderVuln -> Logger:error
+[CallGraph] XXE:DocumentBuilderVuln -> e:toString
+[CallGraph] XXE:DocumentBuilderVuln -> e:toString
+[CallGraph] XXE:DocumentBuilderSec -> WebUtils:getRequestBody
+[CallGraph] XXE:DocumentBuilderSec -> Logger:info
+[CallGraph] XXE:DocumentBuilderSec -> DocumentBuilderFactory:newInstance
+[CallGraph] XXE:DocumentBuilderSec -> DocumentBuilderFactory:setFeature
+[CallGraph] XXE:DocumentBuilderSec -> DocumentBuilderFactory:setFeature
+[CallGraph] XXE:DocumentBuilderSec -> DocumentBuilderFactory:setFeature
+[CallGraph] XXE:DocumentBuilderSec -> DocumentBuilderFactory:newDocumentBuilder
+[CallGraph] XXE:DocumentBuilderSec -> DocumentBuilder:parse
+[CallGraph] XXE:DocumentBuilderSec -> StringReader:close
+[CallGraph] XXE:DocumentBuilderSec -> Logger:error
+[CallGraph] XXE:DocumentBuilderSec -> e:toString
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> WebUtils:getRequestBody
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> Logger:info
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> DocumentBuilderFactory:newInstance
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> DocumentBuilderFactory:setXIncludeAware
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> DocumentBuilderFactory:setNamespaceAware
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> DocumentBuilderFactory:newDocumentBuilder
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> DocumentBuilder:parse
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> Document:getChildNodes
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> XXE:response
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> StringReader:close
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> Logger:error
+[CallGraph] XXE:DocumentBuilderXincludeVuln -> e:toString
+[CallGraph] XXE:DocumentBuilderXincludeSec -> WebUtils:getRequestBody
+[CallGraph] XXE:DocumentBuilderXincludeSec -> Logger:info
+[CallGraph] XXE:DocumentBuilderXincludeSec -> DocumentBuilderFactory:newInstance
+[CallGraph] XXE:DocumentBuilderXincludeSec -> DocumentBuilderFactory:setXIncludeAware
+[CallGraph] XXE:DocumentBuilderXincludeSec -> DocumentBuilderFactory:setNamespaceAware
+[CallGraph] XXE:DocumentBuilderXincludeSec -> DocumentBuilderFactory:setFeature
+[CallGraph] XXE:DocumentBuilderXincludeSec -> DocumentBuilderFactory:setFeature
+[CallGraph] XXE:DocumentBuilderXincludeSec -> DocumentBuilderFactory:setFeature
+[CallGraph] XXE:DocumentBuilderXincludeSec -> DocumentBuilderFactory:newDocumentBuilder
+[CallGraph] XXE:DocumentBuilderXincludeSec -> DocumentBuilder:parse
+[CallGraph] XXE:DocumentBuilderXincludeSec -> Document:getChildNodes
+[CallGraph] XXE:DocumentBuilderXincludeSec -> XXE:response
+[CallGraph] XXE:DocumentBuilderXincludeSec -> StringReader:close
+[CallGraph] XXE:DocumentBuilderXincludeSec -> Logger:error
+[CallGraph] XXE:DocumentBuilderXincludeSec -> e:toString
+[CallGraph] XXE:XMLReaderVuln -> WebUtils:getRequestBody
+[CallGraph] XXE:XMLReaderVuln -> Logger:info
+[CallGraph] XXE:XMLReaderVuln -> SAXParserFactory:newInstance
+[CallGraph] XXE:XMLReaderVuln -> SAXParserFactory:newSAXParser
+[CallGraph] XXE:XMLReaderVuln -> SAXParser:getXMLReader
+[CallGraph] XXE:XMLReaderVuln -> XMLReader:parse
+[CallGraph] XXE:XMLReaderVuln -> Logger:error
+[CallGraph] XXE:XMLReaderVuln -> e:toString
+[CallGraph] XXE:XMLReaderSec -> WebUtils:getRequestBody
+[CallGraph] XXE:XMLReaderSec -> Logger:info
+[CallGraph] XXE:XMLReaderSec -> SAXParserFactory:newInstance
+[CallGraph] XXE:XMLReaderSec -> SAXParserFactory:newSAXParser
+[CallGraph] XXE:XMLReaderSec -> SAXParser:getXMLReader
+[CallGraph] XXE:XMLReaderSec -> XMLReader:setFeature
+[CallGraph] XXE:XMLReaderSec -> XMLReader:setFeature
+[CallGraph] XXE:XMLReaderSec -> XMLReader:setFeature
+[CallGraph] XXE:XMLReaderSec -> XMLReader:parse
+[CallGraph] XXE:XMLReaderSec -> Logger:error
+[CallGraph] XXE:XMLReaderSec -> e:toString
+[CallGraph] XXE:DocumentHelper -> WebUtils:getRequestBody
+[CallGraph] XXE:DocumentHelper -> DocumentHelper:parseText
+[CallGraph] XXE:DocumentHelper -> Logger:error
+[CallGraph] XXE:DocumentHelper -> e:toString
+[CallGraph] XXE:response -> NodeList:getLength
+[CallGraph] XXE:response -> NodeList:item
+[CallGraph] XXE:response -> Node:getChildNodes
+[CallGraph] XXE:response -> NodeList:getLength
+[CallGraph] XXE:response -> NodeList:item
+[CallGraph] XXE:response -> Logger:info
+[CallGraph] XXE:response -> Node:getNodeValue
+[CallGraph] XXE:post -> Logger:info
+[CallGraph] XXE:post -> UserPayload:toString
+[CallGraph] XXE:post -> ResponseEntity:ok
+[CallGraph] XXE:post -> String:format
+[CallGraph] XXE:post -> UserPayload:getUserName
+[CallGraph] XXE:post -> e:printStackTrace
+[CallGraph] XXE:post -> ResponseEntity:ok
+[+]正在分析的文件：ooxmlXXE.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\othervulns\ooxmlXXE.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] ooxmlXXE:ooxml_xxe -> MultipartFile:getInputStream
+[CallGraph] ooxmlXXE:ooxml_xxe -> XSSFWorkbook:getSheetAt
+[CallGraph] ooxmlXXE:ooxml_xxe -> XSSFSheet:rowIterator
+[CallGraph] ooxmlXXE:ooxml_xxe -> Iterator:hasNext
+[CallGraph] ooxmlXXE:ooxml_xxe -> Iterator:next
+[CallGraph] ooxmlXXE:ooxml_xxe -> XSSFRow:cellIterator
+[CallGraph] ooxmlXXE:ooxml_xxe -> Iterator:hasNext
+[CallGraph] ooxmlXXE:ooxml_xxe -> Iterator:next
+[CallGraph] ooxmlXXE:ooxml_xxe -> XSSFCell:getCellType
+[CallGraph] ooxmlXXE:ooxml_xxe -> StringBuilder:append
+[CallGraph] ooxmlXXE:ooxml_xxe -> StringBuilder:append
+[CallGraph] ooxmlXXE:ooxml_xxe -> XSSFCell:getStringCellValue
+[CallGraph] ooxmlXXE:ooxml_xxe -> XSSFCell:getCellType
+[CallGraph] ooxmlXXE:ooxml_xxe -> StringBuilder:append
+[CallGraph] ooxmlXXE:ooxml_xxe -> StringBuilder:append
+[CallGraph] ooxmlXXE:ooxml_xxe -> XSSFCell:getNumericCellValue
+[CallGraph] ooxmlXXE:ooxml_xxe -> Logger:info
+[CallGraph] ooxmlXXE:ooxml_xxe -> StringBuilder:toString
+[+]正在分析的文件：xlsxStreamerXXE.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\controller\othervulns\xlsxStreamerXXE.java
+[CallGraph] xlsxStreamerXXE:xllx_streamer_xxe -> StreamingReader:builder
+[CallGraph] xlsxStreamerXXE:xllx_streamer_xxe -> StreamingReader:open
+[CallGraph] xlsxStreamerXXE:xllx_streamer_xxe -> MultipartFile:getInputStream
+[CallGraph] xlsxStreamerXXE:main -> StreamingReader:builder
+[CallGraph] xlsxStreamerXXE:main -> StreamingReader:open
+[+]正在分析的文件：User.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\dao\User.java
+[+]正在分析的文件：BaseCorsFilter.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\filter\BaseCorsFilter.java
+[CallGraph] unknown:unknown -> unknown:configurationSource
+[CallGraph] BaseCorsFilter:configurationSource -> CorsConfiguration:setAllowCredentials
+[CallGraph] BaseCorsFilter:configurationSource -> CorsConfiguration:addAllowedOrigin
+[CallGraph] BaseCorsFilter:configurationSource -> CorsConfiguration:addAllowedOrigin
+[CallGraph] BaseCorsFilter:configurationSource -> CorsConfiguration:addAllowedHeader
+[CallGraph] BaseCorsFilter:configurationSource -> CorsConfiguration:addAllowedMethod
+[CallGraph] BaseCorsFilter:configurationSource -> CorsConfiguration:addAllowedMethod
+[CallGraph] BaseCorsFilter:configurationSource -> UrlBasedCorsConfigurationSource:registerCorsConfiguration
+[+]正在分析的文件：OriginFilter.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\filter\OriginFilter.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] OriginFilter:doFilter -> HttpServletRequest:getHeader
+[CallGraph] OriginFilter:doFilter -> Logger:info
+[CallGraph] OriginFilter:doFilter -> HttpServletRequest:getRequestURL
+[CallGraph] OriginFilter:doFilter -> SecurityUtil:checkURL
+[CallGraph] OriginFilter:doFilter -> Logger:error
+[CallGraph] OriginFilter:doFilter -> HttpServletRequest:getRequestURL
+[CallGraph] OriginFilter:doFilter -> HttpServletResponse:setStatus
+[CallGraph] OriginFilter:doFilter -> HttpServletResponse:getWriter
+[CallGraph] OriginFilter:doFilter -> HttpServletResponse:println
+[CallGraph] OriginFilter:doFilter -> HttpServletResponse:setHeader
+[CallGraph] OriginFilter:doFilter -> HttpServletResponse:setHeader
+[CallGraph] OriginFilter:doFilter -> HttpServletResponse:setHeader
+[CallGraph] OriginFilter:doFilter -> FilterChain:doFilter
+[+]正在分析的文件：ReferFilter.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\filter\ReferFilter.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] ReferFilter:doFilter -> HttpServletRequest:getHeader
+[CallGraph] ReferFilter:doFilter -> WebConfig:getReferUris
+[CallGraph] ReferFilter:doFilter -> PathMatcher:match
+[CallGraph] ReferFilter:doFilter -> HttpServletRequest:getRequestURI
+[CallGraph] ReferFilter:doFilter -> FilterChain:doFilter
+[CallGraph] ReferFilter:doFilter -> WebConfig:getReferSecEnabled
+[CallGraph] ReferFilter:doFilter -> FilterChain:doFilter
+[CallGraph] ReferFilter:doFilter -> HttpServletRequest:getParameter
+[CallGraph] ReferFilter:doFilter -> WebConfig:getBusinessCallback
+[CallGraph] ReferFilter:doFilter -> String:equals
+[CallGraph] ReferFilter:doFilter -> HttpServletRequest:getMethod
+[CallGraph] ReferFilter:doFilter -> StringUtils:isNotBlank
+[CallGraph] ReferFilter:doFilter -> SecurityUtil:checkURL
+[CallGraph] ReferFilter:doFilter -> Logger:info
+[CallGraph] ReferFilter:doFilter -> HttpServletRequest:getRequestURL
+[CallGraph] ReferFilter:doFilter -> HttpServletRequest:getQueryString
+[CallGraph] ReferFilter:doFilter -> HttpServletResponse:setStatus
+[CallGraph] ReferFilter:doFilter -> HttpServletResponse:getWriter
+[CallGraph] ReferFilter:doFilter -> HttpServletResponse:write
+[CallGraph] ReferFilter:doFilter -> HttpServletResponse:flushBuffer
+[CallGraph] ReferFilter:doFilter -> FilterChain:doFilter
+[+]正在分析的文件：HttpServiceImpl.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\impl\HttpServiceImpl.java
+[CallGraph] HttpServiceImpl:RequestHttp -> RestTemplate:exchange
+[CallGraph] HttpServiceImpl:RequestHttp -> ResponseEntity:getBody
+[CallGraph] HttpServiceImpl:RequestHttpBanRedirects -> RestTemplate:exchange
+[CallGraph] HttpServiceImpl:RequestHttpBanRedirects -> ResponseEntity:getBody
+[+]正在分析的文件：UserMapper.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\mapper\UserMapper.java
+[+]正在分析的文件：Client.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\RMI\Client.java
+[CallGraph] Client:main -> LocateRegistry:getRegistry
+[CallGraph] Client:main -> Registry:lookup
+[CallGraph] Client:main -> Hello:sayHello
+[CallGraph] Client:main -> System:println
+[CallGraph] Client:main -> System:println
+[CallGraph] Client:main -> e:toString
+[CallGraph] Client:main -> e:printStackTrace
+[+]正在分析的文件：Hello.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\RMI\Hello.java
+[+]正在分析的文件：Server.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\RMI\Server.java
+[CallGraph] Server:main -> UnicastRemoteObject:exportObject
+[CallGraph] Server:main -> LocateRegistry:createRegistry
+[CallGraph] Server:main -> LocateRegistry:getRegistry
+[CallGraph] Server:main -> Registry:bind
+[CallGraph] Server:main -> System:println
+[CallGraph] Server:main -> System:println
+[CallGraph] Server:main -> e:toString
+[CallGraph] Server:main -> e:printStackTrace
+[+]正在分析的文件：AntObjectInputStream.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\AntObjectInputStream.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] AntObjectInputStream:resolveClass -> ObjectStreamClass:getName
+[CallGraph] AntObjectInputStream:resolveClass -> Logger:info
+[CallGraph] AntObjectInputStream:resolveClass -> String:startsWith
+[CallGraph] AntObjectInputStream:main -> ObjectOutputStream:writeObject
+[CallGraph] AntObjectInputStream:main -> ObjectOutputStream:close
+[CallGraph] AntObjectInputStream:main -> AntObjectInputStream:readObject
+[CallGraph] AntObjectInputStream:main -> System:println
+[CallGraph] AntObjectInputStream:main -> AntObjectInputStream:close
+[+]正在分析的文件：CsrfAccessDeniedHandler.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\CsrfAccessDeniedHandler.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] CsrfAccessDeniedHandler:handle -> Logger:info
+[CallGraph] CsrfAccessDeniedHandler:handle -> HttpServletRequest:getRequestURL
+[CallGraph] CsrfAccessDeniedHandler:handle -> HttpServletRequest:getQueryString
+[CallGraph] CsrfAccessDeniedHandler:handle -> HttpServletRequest:getHeader
+[CallGraph] CsrfAccessDeniedHandler:handle -> HttpServletResponse:setContentType
+[CallGraph] CsrfAccessDeniedHandler:handle -> HttpServletResponse:setStatus
+[CallGraph] CsrfAccessDeniedHandler:handle -> HttpServletResponse:getWriter
+[CallGraph] CsrfAccessDeniedHandler:handle -> HttpServletResponse:write
+[+]正在分析的文件：CustomCorsProcessor.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\CustomCorsProcessor.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] CustomCorsProcessor:checkOrigin -> StringUtils:isBlank
+[CallGraph] CustomCorsProcessor:checkOrigin -> CustomCorsProcessor:customCheckOrigin
+[CallGraph] CustomCorsProcessor:customCheckOrigin -> SecurityUtil:checkURL
+[CallGraph] CustomCorsProcessor:customCheckOrigin -> Logger:info
+[CallGraph] CustomCorsProcessor:customCheckOrigin -> Logger:error
+[+]正在分析的文件：DisableSpringSecurityFirewall.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\DisableSpringSecurityFirewall.java
+[+]正在分析的文件：LoginFailureHandler.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\LoginFailureHandler.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] LoginFailureHandler:onAuthenticationFailure -> Logger:info
+[CallGraph] LoginFailureHandler:onAuthenticationFailure -> HttpServletRequest:getRequestURL
+[CallGraph] LoginFailureHandler:onAuthenticationFailure -> HttpServletRequest:getParameter
+[CallGraph] LoginFailureHandler:onAuthenticationFailure -> HttpServletRequest:getParameter
+[CallGraph] LoginFailureHandler:onAuthenticationFailure -> HttpServletResponse:setContentType
+[CallGraph] LoginFailureHandler:onAuthenticationFailure -> HttpServletResponse:getWriter
+[CallGraph] LoginFailureHandler:onAuthenticationFailure -> HttpServletResponse:write
+[+]正在分析的文件：LoginSuccessHandler.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\LoginSuccessHandler.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> Logger:info
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> Authentication:getName
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> HttpSessionRequestCache:getRequest
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> SavedRequest:getRedirectUrl
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> Logger:debug
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> e:toString
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> Logger:info
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> Map:put
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> Map:put
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> Map:put
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> HttpServletResponse:setContentType
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> HttpServletResponse:getWriter
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> HttpServletResponse:write
+[CallGraph] LoginSuccessHandler:onAuthenticationSuccess -> JSON:toJSONString
+[+]正在分析的文件：SecurityUtil.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\SecurityUtil.java
+[CallGraph] unknown:unknown -> Pattern:compile
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] SecurityUtil:isHttp -> String:startsWith
+[CallGraph] SecurityUtil:isHttp -> String:startsWith
+[CallGraph] SecurityUtil:gethost -> URI:getHost
+[CallGraph] SecurityUtil:gethost -> URI:toLowerCase
+[CallGraph] SecurityUtil:checkURL -> WebConfig:getSafeDomains
+[CallGraph] SecurityUtil:checkURL -> WebConfig:getBlockDomains
+[CallGraph] SecurityUtil:checkURL -> SecurityUtil:gethost
+[CallGraph] SecurityUtil:checkURL -> SecurityUtil:isHttp
+[CallGraph] SecurityUtil:checkURL -> ArrayList:contains
+[CallGraph] SecurityUtil:checkURL -> String:endsWith
+[CallGraph] SecurityUtil:checkURL -> ArrayList:contains
+[CallGraph] SecurityUtil:checkURL -> String:endsWith
+[CallGraph] SecurityUtil:checkURL -> Logger:error
+[CallGraph] SecurityUtil:checkURL -> e:toString
+[CallGraph] SecurityUtil:checkSSRFByWhitehosts -> SSRFChecker:checkURLFckSSRF
+[CallGraph] SecurityUtil:checkSSRF -> SSRFChecker:checkSSRF
+[CallGraph] SecurityUtil:checkSSRFWithoutRedirect -> SSRFChecker:isInternalIpByUrl
+[CallGraph] SecurityUtil:startSSRFHook -> SocketHook:startHook
+[CallGraph] SecurityUtil:stopSSRFHook -> SocketHook:stopHook
+[CallGraph] SecurityUtil:pathFilter -> String:indexOf
+[CallGraph] SecurityUtil:pathFilter -> URLDecoder:decode
+[CallGraph] SecurityUtil:pathFilter -> Logger:info
+[CallGraph] SecurityUtil:pathFilter -> Logger:info
+[CallGraph] SecurityUtil:pathFilter -> e:toString
+[CallGraph] SecurityUtil:pathFilter -> String:contains
+[CallGraph] SecurityUtil:pathFilter -> String:charAt
+[CallGraph] SecurityUtil:cmdFilter -> Pattern:matcher
+[CallGraph] SecurityUtil:cmdFilter -> Pattern:matches
+[CallGraph] SecurityUtil:sqlFilter -> Pattern:matcher
+[CallGraph] SecurityUtil:sqlFilter -> Pattern:matches
+[CallGraph] SecurityUtil:replaceSpecialStr -> String:toLowerCase
+[CallGraph] SecurityUtil:replaceSpecialStr -> String:length
+[CallGraph] SecurityUtil:replaceSpecialStr -> String:charAt
+[CallGraph] SecurityUtil:replaceSpecialStr -> StringBuilder:append
+[CallGraph] SecurityUtil:replaceSpecialStr -> StringBuilder:append
+[CallGraph] SecurityUtil:replaceSpecialStr -> StringBuilder:append
+[CallGraph] SecurityUtil:replaceSpecialStr -> StringBuilder:toString
+[+]正在分析的文件：WebSecurityConfig.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\WebSecurityConfig.java
+[CallGraph] WebSecurityConfig:matches -> Arrays:asList
+[CallGraph] WebSecurityConfig:matches -> HashSet:contains
+[CallGraph] WebSecurityConfig:matches -> HttpServletRequest:getMethod
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:csrf
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:requireCsrfProtectionMatcher
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:ignoringAntMatchers
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:csrfTokenRepository
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:exceptionHandling
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:accessDeniedHandler
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:cors
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:authorizeRequests
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:antMatchers
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:permitAll
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:regexMatchers
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:denyAll
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:anyRequest
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:authenticated
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:and
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:formLogin
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:loginPage
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:permitAll
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:successHandler
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:failureHandler
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:and
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:logout
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:logoutUrl
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:permitAll
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:and
+[CallGraph] WebSecurityConfig:configure -> HttpSecurity:rememberMe
+[CallGraph] WebSecurityConfig:corsConfigurationSource -> ArrayList:add
+[CallGraph] WebSecurityConfig:corsConfigurationSource -> ArrayList:add
+[CallGraph] WebSecurityConfig:corsConfigurationSource -> CorsConfiguration:setAllowedOrigins
+[CallGraph] WebSecurityConfig:corsConfigurationSource -> CorsConfiguration:setAllowCredentials
+[CallGraph] WebSecurityConfig:corsConfigurationSource -> CorsConfiguration:setAllowedMethods
+[CallGraph] WebSecurityConfig:corsConfigurationSource -> Arrays:asList
+[CallGraph] WebSecurityConfig:corsConfigurationSource -> UrlBasedCorsConfigurationSource:registerCorsConfiguration
+[CallGraph] WebSecurityConfig:configureGlobal -> AuthenticationManagerBuilder:inMemoryAuthentication
+[CallGraph] WebSecurityConfig:configureGlobal -> AuthenticationManagerBuilder:withUser
+[CallGraph] WebSecurityConfig:configureGlobal -> AuthenticationManagerBuilder:password
+[CallGraph] WebSecurityConfig:configureGlobal -> AuthenticationManagerBuilder:roles
+[CallGraph] WebSecurityConfig:configureGlobal -> AuthenticationManagerBuilder:and
+[CallGraph] WebSecurityConfig:configureGlobal -> AuthenticationManagerBuilder:withUser
+[CallGraph] WebSecurityConfig:configureGlobal -> AuthenticationManagerBuilder:password
+[CallGraph] WebSecurityConfig:configureGlobal -> AuthenticationManagerBuilder:roles
+[+]正在分析的文件：SocketHook.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\ssrf\SocketHook.java
+[CallGraph] SocketHook:startHook -> SocketHookFactory:initSocket
+[CallGraph] SocketHook:startHook -> SocketHookFactory:setHook
+[CallGraph] SocketHook:startHook -> Socket:setSocketImplFactory
+[CallGraph] SocketHook:stopHook -> SocketHookFactory:setHook
+[+]正在分析的文件：SocketHookFactory.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\ssrf\SocketHookFactory.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] SocketHookFactory:initSocket -> Socket:getDeclaredField
+[CallGraph] SocketHookFactory:initSocket -> Field:setAccessible
+[CallGraph] SocketHookFactory:initSocket -> Field:get
+[CallGraph] SocketHookFactory:initSocket -> Field:getClass
+[CallGraph] SocketHookFactory:initSocket -> SocketHookImpl:initSocketImpl
+[CallGraph] SocketHookFactory:initSocket -> Class:getDeclaredConstructor
+[CallGraph] SocketHookFactory:initSocket -> Constructor:setAccessible
+[CallGraph] SocketHookFactory:initSocket -> Socket:close
+[CallGraph] SocketHookFactory:createSocketImpl -> Logger:error
+[CallGraph] SocketHookFactory:createSocketImpl -> Constructor:newInstance
+[CallGraph] SocketHookFactory:createSocketImpl -> Logger:error
+[CallGraph] SocketHookFactory:createSocketImpl -> ex:toString
+[CallGraph] SocketHookFactory:createSocketImpl -> Constructor:newInstance
+[CallGraph] SocketHookFactory:createSocketImpl -> Logger:error
+[CallGraph] SocketHookFactory:createSocketImpl -> e:toString
+[+]正在分析的文件：SocketHookImpl.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\ssrf\SocketHookImpl.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] unknown:unknown -> LoggerFactory:getClass
+[CallGraph] unknown:unknown -> socketConstructor:newInstance
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookFactory:setHook
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:initSocketImpl -> SocketHookUtils:findMethod
+[CallGraph] SocketHookImpl:create -> Method:invoke
+[CallGraph] SocketHookImpl:create -> Logger:error
+[CallGraph] SocketHookImpl:create -> ex:toString
+[CallGraph] SocketHookImpl:connect -> Logger:info
+[CallGraph] SocketHookImpl:connect -> Method:invoke
+[CallGraph] SocketHookImpl:connect -> Logger:error
+[CallGraph] SocketHookImpl:connect -> ex:toString
+[CallGraph] SocketHookImpl:connect -> Logger:info
+[CallGraph] SocketHookImpl:connect -> SocketAddress:toString
+[CallGraph] SocketHookImpl:connect -> SSRFChecker:isInternalIp
+[CallGraph] SocketHookImpl:connect -> SocketAddress:getHostAddress
+[CallGraph] SocketHookImpl:connect -> SocketAddress:toString
+[CallGraph] SocketHookImpl:connect -> Method:invoke
+[CallGraph] SocketHookImpl:connect -> Logger:error
+[CallGraph] SocketHookImpl:connect -> ex:toString
+[CallGraph] SocketHookImpl:connect -> InetSocketAddress:getAddress
+[CallGraph] SocketHookImpl:connect -> InetSocketAddress:getHostAddress
+[CallGraph] SocketHookImpl:connect -> InetSocketAddress:getHostName
+[CallGraph] SocketHookImpl:connect -> Logger:info
+[CallGraph] SocketHookImpl:connect -> String:format
+[CallGraph] SocketHookImpl:connect -> SSRFChecker:isInternalIp
+[CallGraph] SocketHookImpl:connect -> String:format
+[CallGraph] SocketHookImpl:connect -> Method:invoke
+[CallGraph] SocketHookImpl:connect -> Logger:error
+[CallGraph] SocketHookImpl:connect -> ex:toString
+[CallGraph] SocketHookImpl:bind -> Method:invoke
+[CallGraph] SocketHookImpl:bind -> Logger:error
+[CallGraph] SocketHookImpl:bind -> ex:toString
+[CallGraph] SocketHookImpl:listen -> Method:invoke
+[CallGraph] SocketHookImpl:listen -> Logger:error
+[CallGraph] SocketHookImpl:listen -> ex:toString
+[CallGraph] SocketHookImpl:accept -> Method:invoke
+[CallGraph] SocketHookImpl:accept -> Logger:error
+[CallGraph] SocketHookImpl:accept -> ex:toString
+[CallGraph] SocketHookImpl:getInputStream -> Method:invoke
+[CallGraph] SocketHookImpl:getInputStream -> Logger:error
+[CallGraph] SocketHookImpl:getInputStream -> ex:toString
+[CallGraph] SocketHookImpl:getOutputStream -> Method:invoke
+[CallGraph] SocketHookImpl:getOutputStream -> Logger:error
+[CallGraph] SocketHookImpl:getOutputStream -> ex:toString
+[CallGraph] SocketHookImpl:available -> Method:invoke
+[CallGraph] SocketHookImpl:available -> Logger:error
+[CallGraph] SocketHookImpl:available -> ex:toString
+[CallGraph] SocketHookImpl:close -> Method:invoke
+[CallGraph] SocketHookImpl:close -> Logger:error
+[CallGraph] SocketHookImpl:close -> ex:toString
+[CallGraph] SocketHookImpl:shutdownInput -> Method:invoke
+[CallGraph] SocketHookImpl:shutdownInput -> Logger:error
+[CallGraph] SocketHookImpl:shutdownInput -> ex:toString
+[CallGraph] SocketHookImpl:shutdownOutput -> Method:invoke
+[CallGraph] SocketHookImpl:shutdownOutput -> Logger:error
+[CallGraph] SocketHookImpl:shutdownOutput -> ex:toString
+[CallGraph] SocketHookImpl:sendUrgentData -> Method:invoke
+[CallGraph] SocketHookImpl:sendUrgentData -> Logger:error
+[CallGraph] SocketHookImpl:sendUrgentData -> ex:toString
+[CallGraph] SocketHookImpl:setOption -> SocketImpl:setOption
+[CallGraph] SocketHookImpl:getOption -> SocketImpl:getOption
+[+]正在分析的文件：SocketHookUtils.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\ssrf\SocketHookUtils.java
+[CallGraph] SocketHookUtils:findMethod -> Class:getDeclaredMethod
+[CallGraph] SocketHookUtils:findMethod -> Method:setAccessible
+[CallGraph] SocketHookUtils:findMethod -> Class:getSuperclass
+[+]正在分析的文件：SSRFChecker.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\ssrf\SSRFChecker.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] SSRFChecker:checkURLFckSSRF -> WebConfig:getSsrfSafeDomains
+[CallGraph] SSRFChecker:checkURLFckSSRF -> SecurityUtil:gethost
+[CallGraph] SSRFChecker:checkURLFckSSRF -> SecurityUtil:isHttp
+[CallGraph] SSRFChecker:checkURLFckSSRF -> ArrayList:contains
+[CallGraph] SSRFChecker:checkURLFckSSRF -> String:endsWith
+[CallGraph] SSRFChecker:checkURLFckSSRF -> Logger:error
+[CallGraph] SSRFChecker:checkURLFckSSRF -> e:toString
+[CallGraph] SSRFChecker:checkSSRF -> HttpURLConnection:getResponseCode
+[CallGraph] SSRFChecker:checkSSRF -> SSRFChecker:isInternalIpByUrl
+[CallGraph] SSRFChecker:checkSSRF -> Logger:error
+[CallGraph] SSRFChecker:checkSSRF -> URL:openConnection
+[CallGraph] SSRFChecker:checkSSRF -> HttpURLConnection:setInstanceFollowRedirects
+[CallGraph] SSRFChecker:checkSSRF -> HttpURLConnection:setUseCaches
+[CallGraph] SSRFChecker:checkSSRF -> HttpURLConnection:setConnectTimeout
+[CallGraph] SSRFChecker:checkSSRF -> HttpURLConnection:connect
+[CallGraph] SSRFChecker:checkSSRF -> HttpURLConnection:getResponseCode
+[CallGraph] SSRFChecker:checkSSRF -> HttpURLConnection:getHeaderField
+[CallGraph] SSRFChecker:checkSSRF -> Logger:info
+[CallGraph] SSRFChecker:checkSSRF -> HttpURLConnection:disconnect
+[CallGraph] SSRFChecker:isInternalIpByUrl -> SSRFChecker:url2host
+[CallGraph] SSRFChecker:isInternalIpByUrl -> String:equals
+[CallGraph] SSRFChecker:isInternalIpByUrl -> SSRFChecker:host2ip
+[CallGraph] SSRFChecker:isInternalIpByUrl -> String:equals
+[CallGraph] SSRFChecker:isInternalIpByUrl -> SSRFChecker:isInternalIp
+[CallGraph] SSRFChecker:isInternalIp -> StringUtils:isEmpty
+[CallGraph] SSRFChecker:isInternalIp -> Logger:error
+[CallGraph] SSRFChecker:isInternalIp -> WebConfig:getSsrfBlockIps
+[CallGraph] SSRFChecker:isInternalIp -> SubnetUtils:getInfo
+[CallGraph] SSRFChecker:isInternalIp -> SubnetUtils:isInRange
+[CallGraph] SSRFChecker:isInternalIp -> Logger:error
+[CallGraph] SSRFChecker:host2ip -> SSRFChecker:isOctalIP
+[CallGraph] SSRFChecker:host2ip -> InetAddress:getByName
+[CallGraph] SSRFChecker:host2ip -> InetAddress:getHostAddress
+[CallGraph] SSRFChecker:host2ip -> Logger:error
+[CallGraph] SSRFChecker:host2ip -> e:getMessage
+[CallGraph] SSRFChecker:isOctalIP -> String:split
+[CallGraph] SSRFChecker:isOctalIP -> SSRFChecker:isNumberOrDot
+[CallGraph] SSRFChecker:isOctalIP -> Logger:error
+[CallGraph] SSRFChecker:isOctalIP -> String:startsWith
+[CallGraph] SSRFChecker:isOctalIP -> Integer:valueOf
+[CallGraph] SSRFChecker:isOctalIP -> Integer:toString
+[CallGraph] SSRFChecker:isOctalIP -> SSRFChecker:isNumber
+[CallGraph] SSRFChecker:isOctalIP -> Logger:error
+[CallGraph] SSRFChecker:isOctalIP -> String:startsWith
+[CallGraph] SSRFChecker:isOctalIP -> String:equals
+[CallGraph] SSRFChecker:isOctalIP -> Integer:valueOf
+[CallGraph] SSRFChecker:isOctalIP -> Logger:error
+[CallGraph] SSRFChecker:isOctalIP -> StringBuilder:append
+[CallGraph] SSRFChecker:isOctalIP -> StringBuilder:append
+[CallGraph] SSRFChecker:isOctalIP -> Integer:valueOf
+[CallGraph] SSRFChecker:isOctalIP -> Integer:valueOf
+[CallGraph] SSRFChecker:isOctalIP -> Logger:error
+[CallGraph] SSRFChecker:isOctalIP -> StringBuilder:append
+[CallGraph] SSRFChecker:isOctalIP -> StringBuilder:append
+[CallGraph] SSRFChecker:isOctalIP -> StringBuilder:substring
+[CallGraph] SSRFChecker:isOctalIP -> StringBuilder:lastIndexOf
+[CallGraph] SSRFChecker:isOctalIP -> Logger:error
+[CallGraph] SSRFChecker:isOctalIP -> e:getMessage
+[CallGraph] SSRFChecker:isNumber -> String:equals
+[CallGraph] SSRFChecker:isNumber -> String:length
+[CallGraph] SSRFChecker:isNumber -> String:charAt
+[CallGraph] SSRFChecker:isNumberOrDot -> String:length
+[CallGraph] SSRFChecker:isNumberOrDot -> String:charAt
+[CallGraph] SSRFChecker:url2host -> SecurityUtil:isHttp
+[CallGraph] SSRFChecker:url2host -> URI:getHost
+[+]正在分析的文件：SSRFException.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\security\ssrf\SSRFException.java
+[+]正在分析的文件：HttpService.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\service\HttpService.java
+[+]正在分析的文件：CookieUtils.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\util\CookieUtils.java
+[CallGraph] CookieUtils:deleteCookie -> Cookie:setMaxAge
+[CallGraph] CookieUtils:deleteCookie -> Cookie:setPath
+[CallGraph] CookieUtils:deleteCookie -> HttpServletResponse:addCookie
+[CallGraph] CookieUtils:deleteCookie -> log:error
+[CallGraph] CookieUtils:deleteCookie -> e:toString
+[CallGraph] CookieUtils:addCookie -> Cookie:setMaxAge
+[CallGraph] CookieUtils:addCookie -> Cookie:setPath
+[CallGraph] CookieUtils:addCookie -> HttpServletResponse:addCookie
+[CallGraph] CookieUtils:addCookie -> log:error
+[CallGraph] CookieUtils:addCookie -> e:toString
+[+]正在分析的文件：HttpUtils.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\util\HttpUtils.java
+[CallGraph] unknown:unknown -> LoggerFactory:getLogger
+[CallGraph] HttpUtils:commonHttpClient -> OkHttpClient:executeMethod
+[CallGraph] HttpUtils:commonHttpClient -> GetMethod:getResponseBody
+[CallGraph] HttpUtils:commonHttpClient -> e:getMessage
+[CallGraph] HttpUtils:commonHttpClient -> GetMethod:releaseConnection
+[CallGraph] HttpUtils:request -> Request:Get
+[CallGraph] HttpUtils:request -> Request:execute
+[CallGraph] HttpUtils:request -> Request:returnContent
+[CallGraph] HttpUtils:request -> Request:toString
+[CallGraph] HttpUtils:request -> e:getMessage
+[CallGraph] HttpUtils:httpClient -> HttpClients:createDefault
+[CallGraph] HttpUtils:httpClient -> OkHttpClient:execute
+[CallGraph] HttpUtils:httpClient -> HttpResponse:getEntity
+[CallGraph] HttpUtils:httpClient -> HttpResponse:getContent
+[CallGraph] HttpUtils:httpClient -> BufferedReader:readLine
+[CallGraph] HttpUtils:httpClient -> StringBuilder:append
+[CallGraph] HttpUtils:httpClient -> StringBuilder:toString
+[CallGraph] HttpUtils:httpClient -> e:getMessage
+[CallGraph] HttpUtils:URLConnection -> URL:openConnection
+[CallGraph] HttpUtils:URLConnection -> URLConnection:getInputStream
+[CallGraph] HttpUtils:URLConnection -> BufferedReader:readLine
+[CallGraph] HttpUtils:URLConnection -> StringBuilder:append
+[CallGraph] HttpUtils:URLConnection -> BufferedReader:close
+[CallGraph] HttpUtils:URLConnection -> StringBuilder:toString
+[CallGraph] HttpUtils:URLConnection -> Logger:error
+[CallGraph] HttpUtils:URLConnection -> e:getMessage
+[CallGraph] HttpUtils:URLConnection -> e:getMessage
+[CallGraph] HttpUtils:HttpURLConnection -> URL:openConnection
+[CallGraph] HttpUtils:HttpURLConnection -> HttpURLConnection:getInputStream
+[CallGraph] HttpUtils:HttpURLConnection -> BufferedReader:readLine
+[CallGraph] HttpUtils:HttpURLConnection -> StringBuilder:append
+[CallGraph] HttpUtils:HttpURLConnection -> BufferedReader:close
+[CallGraph] HttpUtils:HttpURLConnection -> StringBuilder:toString
+[CallGraph] HttpUtils:HttpURLConnection -> Logger:error
+[CallGraph] HttpUtils:HttpURLConnection -> e:getMessage
+[CallGraph] HttpUtils:HttpURLConnection -> e:getMessage
+[CallGraph] HttpUtils:Jsoup -> Jsoup:connect
+[CallGraph] HttpUtils:Jsoup -> Jsoup:timeout
+[CallGraph] HttpUtils:Jsoup -> Jsoup:cookie
+[CallGraph] HttpUtils:Jsoup -> Jsoup:execute
+[CallGraph] HttpUtils:Jsoup -> Jsoup:parse
+[CallGraph] HttpUtils:Jsoup -> Document:outerHtml
+[CallGraph] HttpUtils:Jsoup -> e:getMessage
+[CallGraph] HttpUtils:okhttp -> com:url
+[CallGraph] HttpUtils:okhttp -> com:build
+[CallGraph] HttpUtils:okhttp -> OkHttpClient:newCall
+[CallGraph] HttpUtils:okhttp -> OkHttpClient:execute
+[CallGraph] HttpUtils:okhttp -> OkHttpClient:body
+[CallGraph] HttpUtils:okhttp -> OkHttpClient:string
+[CallGraph] HttpUtils:imageIO -> ImageIO:read
+[CallGraph] HttpUtils:imageIO -> Logger:error
+[CallGraph] HttpUtils:imageIO -> e:getMessage
+[CallGraph] HttpUtils:IOUtils -> IOUtils:toByteArray
+[CallGraph] HttpUtils:IOUtils -> URI:create
+[CallGraph] HttpUtils:IOUtils -> Logger:error
+[CallGraph] HttpUtils:IOUtils -> e:getMessage
+[CallGraph] HttpUtils:HttpAsyncClients -> HttpAsyncClients:createDefault
+[CallGraph] HttpUtils:HttpAsyncClients -> CloseableHttpAsyncClient:start
+[CallGraph] HttpUtils:HttpAsyncClients -> CloseableHttpAsyncClient:execute
+[CallGraph] HttpUtils:HttpAsyncClients -> Future:get
+[CallGraph] HttpUtils:HttpAsyncClients -> EntityUtils:toString
+[CallGraph] HttpUtils:HttpAsyncClients -> HttpResponse:getEntity
+[CallGraph] HttpUtils:HttpAsyncClients -> e:getMessage
+[CallGraph] HttpUtils:HttpAsyncClients -> CloseableHttpAsyncClient:close
+[CallGraph] HttpUtils:HttpAsyncClients -> Logger:error
+[CallGraph] HttpUtils:HttpAsyncClients -> e:getMessage
+[+]正在分析的文件：JwtUtils.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\util\JwtUtils.java
+[CallGraph] unknown:unknown -> Base64:getEncoder
+[CallGraph] unknown:unknown -> Base64:encodeToString
+[CallGraph] unknown:unknown -> String:getBytes
+[CallGraph] JwtUtils:generateTokenByJjwt -> Jwts:builder
+[CallGraph] JwtUtils:generateTokenByJjwt -> Jwts:setHeaderParam
+[CallGraph] JwtUtils:generateTokenByJjwt -> Jwts:setHeaderParam
+[CallGraph] JwtUtils:generateTokenByJjwt -> Jwts:setIssuedAt
+[CallGraph] JwtUtils:generateTokenByJjwt -> Jwts:setExpiration
+[CallGraph] JwtUtils:generateTokenByJjwt -> System:currentTimeMillis
+[CallGraph] JwtUtils:generateTokenByJjwt -> System:claim
+[CallGraph] JwtUtils:generateTokenByJjwt -> System:signWith
+[CallGraph] JwtUtils:generateTokenByJjwt -> System:compact
+[CallGraph] JwtUtils:getUserIdFromJjwtToken -> Jwts:parser
+[CallGraph] JwtUtils:getUserIdFromJjwtToken -> Jwts:setSigningKey
+[CallGraph] JwtUtils:getUserIdFromJjwtToken -> Jwts:parseClaimsJws
+[CallGraph] JwtUtils:getUserIdFromJjwtToken -> Jwts:getBody
+[CallGraph] JwtUtils:getUserIdFromJjwtToken -> Claims:get
+[CallGraph] JwtUtils:getUserIdFromJjwtToken -> e:toString
+[CallGraph] JwtUtils:generateTokenByJavaJwt -> JWT:create
+[CallGraph] JwtUtils:generateTokenByJavaJwt -> JWT:withClaim
+[CallGraph] JwtUtils:generateTokenByJavaJwt -> JWT:withExpiresAt
+[CallGraph] JwtUtils:generateTokenByJavaJwt -> System:currentTimeMillis
+[CallGraph] JwtUtils:generateTokenByJavaJwt -> System:withIssuedAt
+[CallGraph] JwtUtils:generateTokenByJavaJwt -> System:sign
+[CallGraph] JwtUtils:generateTokenByJavaJwt -> Algorithm:HMAC256
+[CallGraph] JwtUtils:verifyTokenByJavaJwt -> Algorithm:HMAC256
+[CallGraph] JwtUtils:verifyTokenByJavaJwt -> JWT:require
+[CallGraph] JwtUtils:verifyTokenByJavaJwt -> JWT:build
+[CallGraph] JwtUtils:verifyTokenByJavaJwt -> JWTVerifier:verify
+[CallGraph] JwtUtils:verifyTokenByJavaJwt -> log:error
+[CallGraph] JwtUtils:verifyTokenByJavaJwt -> exception:toString
+[CallGraph] JwtUtils:getNicknameByJavaJwt -> JwtUtils:verifyTokenByJavaJwt
+[CallGraph] JwtUtils:getNicknameByJavaJwt -> log:error
+[CallGraph] JwtUtils:getNicknameByJavaJwt -> JWT:decode
+[CallGraph] JwtUtils:getNicknameByJavaJwt -> JWT:getClaim
+[CallGraph] JwtUtils:getNicknameByJavaJwt -> JWT:asString
+[CallGraph] JwtUtils:main -> JwtUtils:generateTokenByJjwt
+[CallGraph] JwtUtils:main -> System:println
+[CallGraph] JwtUtils:main -> System:println
+[CallGraph] JwtUtils:main -> JwtUtils:getUserIdFromJjwtToken
+[CallGraph] JwtUtils:main -> JwtUtils:generateTokenByJavaJwt
+[CallGraph] JwtUtils:main -> System:println
+[CallGraph] JwtUtils:main -> System:println
+[CallGraph] JwtUtils:main -> JwtUtils:getNicknameByJavaJwt
+[+]正在分析的文件：LoginUtils.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\util\LoginUtils.java
+[CallGraph] LoginUtils:getUserInfo2JsonStr -> HttpServletRequest:getUserPrincipal
+[CallGraph] LoginUtils:getUserInfo2JsonStr -> Principal:getName
+[CallGraph] LoginUtils:getUserInfo2JsonStr -> Map:put
+[CallGraph] LoginUtils:getUserInfo2JsonStr -> JSON:toJSONString
+[+]正在分析的文件：WebUtils.java
+[+]已成功解析文件：D:/Code/Github/java-sec-code\src\main\java\org\joychou\util\WebUtils.java
+[CallGraph] WebUtils:getRequestBody -> HttpServletRequest:getInputStream
+[CallGraph] WebUtils:getRequestBody -> WebUtils:convertStreamToString
+[CallGraph] WebUtils:convertStreamToString -> java:useDelimiter
+[CallGraph] WebUtils:convertStreamToString -> java:hasNext
+[CallGraph] WebUtils:convertStreamToString -> java:next
+[CallGraph] WebUtils:getCookieValueByName -> org.springframework.web.util.WebUtils:getCookie
+[CallGraph] WebUtils:getCookieValueByName -> Cookie:getValue
+[CallGraph] WebUtils:json2Jsonp -> HtmlUtils:htmlEscape
+[CallGraph] WebUtils:getFileExtension -> Preconditions:checkNotNull
+[CallGraph] WebUtils:getFileExtension -> File:getName
+[CallGraph] WebUtils:getFileExtension -> String:lastIndexOf
+[CallGraph] WebUtils:getFileExtension -> String:substring
+[CallGraph] WebUtils:getNameWithoutExtension -> Preconditions:checkNotNull
+[CallGraph] WebUtils:getNameWithoutExtension -> File:getName
+[CallGraph] WebUtils:getNameWithoutExtension -> String:lastIndexOf
+[CallGraph] WebUtils:getNameWithoutExtension -> String:substring
+[+]AST构建全部完成！
+--------------------------------------------------
+[+]正在审计源项目：D:/Code/Github/java-sec-code
+[+]正在审计sink点：Runtime:exec
+[*]需要追溯调用点: ['TomcatFilterMemShell:doFilter', 'WebSocketsCmdEndpoint:onMessage', 'Rce:CommandExec', 'Rce:main']
+[→]正在追溯的路径: [TomcatFilterMemShell:doFilter → Runtime:exec]
+[→]正在追溯的路径: [WebSocketsCmdEndpoint:onMessage → Runtime:exec]
+[→]正在追溯的路径: [Rce:CommandExec → Runtime:exec]
+[✓]发现完整调用链: ['Rce:CommandExec', 'Runtime:exec']
+[→]正在追溯的路径: [Rce:main → Runtime:exec]
+[+]正在审计sink点：GroovyShell:evaluate
+[*]需要追溯调用点: ['Rce:groovyshell']
+[→]正在追溯的路径: [Rce:groovyshell → GroovyShell:evaluate]
+[✓]发现完整调用链: ['Rce:groovyshell', 'GroovyShell:evaluate']
+[+]正在审计sink点：ObjectInputStream:readObject
+[*]需要追溯调用点: ['Shiro:shiro_deserialize']
+[→]正在追溯的路径: [Shiro:shiro_deserialize → ObjectInputStream:readObject]
+[✓]发现完整调用链: ['Shiro:shiro_deserialize', 'ObjectInputStream:readObject']
+[+]正在审计sink点：ObjectInputStream:readUnshared
+[+]正在审计sink点：Yaml:load
+[*]需要追溯调用点: ['Rce:yarm', 'Rce:secYarm']
+[→]正在追溯的路径: [Rce:yarm → Yaml:load]
+[✓]发现完整调用链: ['Rce:yarm', 'Yaml:load']
+[→]正在追溯的路径: [Rce:secYarm → Yaml:load]
+[✓]发现完整调用链: ['Rce:secYarm', 'Yaml:load']
+[+]正在审计sink点：URL:openConnection
+[*]需要追溯调用点: ['SSRFChecker:checkSSRF', 'HttpUtils:URLConnection', 'HttpUtils:HttpURLConnection']
+[→]正在追溯的路径: [SSRFChecker:checkSSRF → URL:openConnection]
+[→]正在追溯的路径: [HttpUtils:URLConnection → URL:openConnection]
+[→]正在追溯的路径: [HttpUtils:HttpURLConnection → URL:openConnection]
+[*]需要追溯调用点: ['SecurityUtil:checkSSRF']
+[→]正在追溯的路径: [SecurityUtil:checkSSRF → SSRFChecker:checkSSRF → URL:openConnection]
+[*]需要追溯调用点: ['SSRF:URLConnectionVuln', 'SSRF:URLConnectionSec']
+[→]正在追溯的路径: [SSRF:URLConnectionVuln → HttpUtils:URLConnection → URL:openConnection]
+[✓]发现完整调用链: ['SSRF:URLConnectionVuln', 'HttpUtils:URLConnection', 'URL:openConnection']
+[→]正在追溯的路径: [SSRF:URLConnectionSec → HttpUtils:URLConnection → URL:openConnection]
+[✓]发现完整调用链: ['SSRF:URLConnectionSec', 'HttpUtils:URLConnection', 'URL:openConnection']
+[*]需要追溯调用点: ['SSRF:httpURLConnection', 'SSRF:httpURLConnectionVuln']
+[→]正在追溯的路径: [SSRF:httpURLConnection → HttpUtils:HttpURLConnection → URL:openConnection]
+[✓]发现完整调用链: ['SSRF:httpURLConnection', 'HttpUtils:HttpURLConnection', 'URL:openConnection']
+[→]正在追溯的路径: [SSRF:httpURLConnectionVuln → HttpUtils:HttpURLConnection → URL:openConnection]
+[✓]发现完整调用链: ['SSRF:httpURLConnectionVuln', 'HttpUtils:HttpURLConnection', 'URL:openConnection']
+[+]正在审计sink点：OkHttpClient:newCall
+[*]需要追溯调用点: ['HttpUtils:okhttp']
+[→]正在追溯的路径: [HttpUtils:okhttp → OkHttpClient:newCall]
+[*]需要追溯调用点: ['SSRF:okhttp']
+[→]正在追溯的路径: [SSRF:okhttp → HttpUtils:okhttp → OkHttpClient:newCall]
+[✓]发现完整调用链: ['SSRF:okhttp', 'HttpUtils:okhttp', 'OkHttpClient:newCall']
+--------------------------------------------------
+[+]代码审计结果汇总：
+[
+  {
+    "vul_type": "RCE",
+    "sink_desc": "任意代码执行漏洞",
+    "severity": "High",
+    "sink": "Runtime:exec",
+    "call_chains": [
+      {
+        "chain": [
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\Rce.java:CommandExec"
+        ],
+        "code": [
+          "    public String CommandExec(String cmd) {\n        Runtime run = Runtime.getRuntime();\n        StringBuilder sb = new StringBuilder();\n\n        try {\n            Process p = run.exec(cmd);\n            BufferedInputStream in = new BufferedInputStream(p.getInputStream());\n            BufferedReader inBr = new BufferedReader(new InputStreamReader(in));\n            String tmpStr;\n\n            while ((tmpStr = inBr.readLine()) != null) {\n                sb.append(tmpStr);\n            }\n\n            if (p.waitFor() != 0) {\n                if (p.exitValue() == 1)\n                    return \"Command exec failed!!\";\n            }\n\n            inBr.close();\n            in.close();\n        } catch (Exception e) {\n            return e.toString();\n        }\n        return sb.toString();\n    }\n"
+        ]
+      }
+    ]
+  },
+  {
+    "vul_type": "RCE",
+    "sink_desc": "任意代码执行漏洞",
+    "severity": "High",
+    "sink": "GroovyShell:evaluate",
+    "call_chains": [
+      {
+        "chain": [
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\Rce.java:groovyshell"
+        ],
+        "code": [
+          "    public void groovyshell(String content) {\n        GroovyShell groovyShell = new GroovyShell();\n        groovyShell.evaluate(content);\n    }\n"
+        ]
+      }
+    ]
+  },
+  {
+    "vul_type": "UNSERIALIZE",
+    "sink_desc": "反序列化漏洞",
+    "severity": "High",
+    "sink": "ObjectInputStream:readObject",
+    "call_chains": [
+      {
+        "chain": [
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\Shiro.java:shiro_deserialize"
+        ],
+        "code": [
+          "    public String shiro_deserialize(HttpServletRequest req, HttpServletResponse res) {\n        Cookie cookie = getCookie(req, Constants.REMEMBER_ME_COOKIE);\n        if (null == cookie) {\n            return \"No rememberMe cookie. Right?\";\n        }\n\n        try {\n            String rememberMe = cookie.getValue();\n            byte[] b64DecodeRememberMe = java.util.Base64.getDecoder().decode(rememberMe);\n            byte[] aesDecrypt = acs.decrypt(b64DecodeRememberMe, KEYS).getBytes();\n            ByteArrayInputStream bytes = new ByteArrayInputStream(aesDecrypt);\n            ObjectInputStream in = new ObjectInputStream(bytes);\n            in.readObject();\n            in.close();\n        } catch (Exception e){\n            if (CookieUtils.addCookie(res, \"rememberMe\", DELETE_ME)){\n                log.error(e.getMessage());\n                return \"RememberMe cookie decrypt error. Set deleteMe cookie success.\";\n            }\n        }\n\n        return \"Shiro deserialize\";\n    }\n"
+        ]
+      }
+    ]
+  },
+  {
+    "vul_type": "UNSERIALIZE",
+    "sink_desc": "反序列化漏洞",
+    "severity": "High",
+    "sink": "Yaml:load",
+    "call_chains": [
+      {
+        "chain": [
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\Rce.java:yarm"
+        ],
+        "code": [
+          "    public void yarm(String content) {\n        Yaml y = new Yaml();\n        y.load(content);\n    }\n"
+        ]
+      },
+      {
+        "chain": [
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\Rce.java:secYarm"
+        ],
+        "code": [
+          "    public void secYarm(String content) {\n        Yaml y = new Yaml(new SafeConstructor());\n        y.load(content);\n    }\n"
+        ]
+      }
+    ]
+  },
+  {
+    "vul_type": "SSRF",
+    "sink_desc": "服务端请求伪造漏洞",
+    "severity": "Medium",
+    "sink": "URL:openConnection",
+    "call_chains": [
+      {
+        "chain": [
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\SSRF.java:URLConnectionVuln",
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\util\\HttpUtils.java:URLConnection"
+        ],
+        "code": [
+          "    public String URLConnectionVuln(String url) {\n        return HttpUtils.URLConnection(url);\n    }\n",
+          "    public static String URLConnection(String url) {\n        try {\n            URL u = new URL(url);\n            URLConnection urlConnection = u.openConnection();\n            BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream())); //send request\n            String inputLine;\n            StringBuilder html = new StringBuilder();\n\n            while ((inputLine = in.readLine()) != null) {\n                html.append(inputLine);\n            }\n            in.close();\n            return html.toString();\n        } catch (Exception e) {\n            logger.error(e.getMessage());\n            return e.getMessage();\n        }\n    }\n"
+        ]
+      },
+      {
+        "chain": [
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\SSRF.java:URLConnectionSec",
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\util\\HttpUtils.java:URLConnection"
+        ],
+        "code": [
+          "    public String URLConnectionSec(String url) {\n\n        // Decline not http/https protocol\n        if (!SecurityUtil.isHttp(url)) {\n            return \"[-] SSRF check failed\";\n        }\n\n        try {\n            SecurityUtil.startSSRFHook();\n            return HttpUtils.URLConnection(url);\n        } catch (SSRFException | IOException e) {\n            return e.getMessage();\n        } finally {\n            SecurityUtil.stopSSRFHook();\n        }\n\n    }\n",
+          "    public static String URLConnection(String url) {\n        try {\n            URL u = new URL(url);\n            URLConnection urlConnection = u.openConnection();\n            BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream())); //send request\n            String inputLine;\n            StringBuilder html = new StringBuilder();\n\n            while ((inputLine = in.readLine()) != null) {\n                html.append(inputLine);\n            }\n            in.close();\n            return html.toString();\n        } catch (Exception e) {\n            logger.error(e.getMessage());\n            return e.getMessage();\n        }\n    }\n"
+        ]
+      },
+      {
+        "chain": [
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\SSRF.java:httpURLConnection",
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\util\\HttpUtils.java:HttpURLConnection"
+        ],
+        "code": [
+          "    public String httpURLConnection(@RequestParam String url) {\n        try {\n            SecurityUtil.startSSRFHook();\n            return HttpUtils.HttpURLConnection(url);\n        } catch (SSRFException | IOException e) {\n            return e.getMessage();\n        } finally {\n            SecurityUtil.stopSSRFHook();\n        }\n    }\n",
+          "    public static String HttpURLConnection(String url) {\n        try {\n            URL u = new URL(url);\n            URLConnection urlConnection = u.openConnection();\n            HttpURLConnection conn = (HttpURLConnection) urlConnection;\n//             conn.setInstanceFollowRedirects(false);\n//             Many HttpURLConnection methods can send http request, such as getResponseCode, getHeaderField\n            InputStream is = conn.getInputStream();  // send request\n            BufferedReader in = new BufferedReader(new InputStreamReader(is));\n            String inputLine;\n            StringBuilder html = new StringBuilder();\n\n            while ((inputLine = in.readLine()) != null) {\n                html.append(inputLine);\n            }\n            in.close();\n            return html.toString();\n        } catch (IOException e) {\n            logger.error(e.getMessage());\n            return e.getMessage();\n        }\n    }\n"
+        ]
+      },
+      {
+        "chain": [
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\SSRF.java:httpURLConnectionVuln",
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\util\\HttpUtils.java:HttpURLConnection"
+        ],
+        "code": [
+          "    public String httpURLConnectionVuln(@RequestParam String url) {\n        return HttpUtils.HttpURLConnection(url);\n    }\n",
+          "    public static String HttpURLConnection(String url) {\n        try {\n            URL u = new URL(url);\n            URLConnection urlConnection = u.openConnection();\n            HttpURLConnection conn = (HttpURLConnection) urlConnection;\n//             conn.setInstanceFollowRedirects(false);\n//             Many HttpURLConnection methods can send http request, such as getResponseCode, getHeaderField\n            InputStream is = conn.getInputStream();  // send request\n            BufferedReader in = new BufferedReader(new InputStreamReader(is));\n            String inputLine;\n            StringBuilder html = new StringBuilder();\n\n            while ((inputLine = in.readLine()) != null) {\n                html.append(inputLine);\n            }\n            in.close();\n            return html.toString();\n        } catch (IOException e) {\n            logger.error(e.getMessage());\n            return e.getMessage();\n        }\n    }\n"
+        ]
+      }
+    ]
+  },
+  {
+    "vul_type": "SSRF",
+    "sink_desc": "服务端请求伪造漏洞",
+    "severity": "Medium",
+    "sink": "OkHttpClient:newCall",
+    "call_chains": [
+      {
+        "chain": [
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\controller\\SSRF.java:okhttp",
+          "D:/Code/Github/java-sec-code\\src\\main\\java\\org\\joychou\\util\\HttpUtils.java:okhttp"
+        ],
+        "code": [
+          "    public String okhttp(@RequestParam String url) {\n\n        try {\n            SecurityUtil.startSSRFHook();\n            return HttpUtils.okhttp(url);\n        } catch (SSRFException | IOException e) {\n            return e.getMessage();\n        } finally {\n            SecurityUtil.stopSSRFHook();\n        }\n\n    }\n",
+          "    public static String okhttp(String url) throws IOException {\n        OkHttpClient client = new OkHttpClient();\n//         client.setFollowRedirects(false);\n        com.squareup.okhttp.Request ok_http = new com.squareup.okhttp.Request.Builder().url(url).build();\n        return client.newCall(ok_http).execute().body().string();\n    }\n"
+        ]
+      }
+    ]
+  }
+]
+[+]HTML文件已自动保存到：Result\java-sec-code\VulReport_java-sec-code.html
+[+]审计结果已保存到：Result\java-sec-code\VulReport_java-sec-code.md
+[+]主进程任务完成，耗时：3.78秒
