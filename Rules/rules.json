@@ -106,12 +106,6 @@
       ]
     },
     {
-      "sink_name": "COMMAND_INJECTION",
-      "sink_desc": "命令注入（方法已全部合并至RCE）",
-      "severity_level": "High",
-      "sinks": []
-    },
-    {
       "sink_name": "LDAP_INJECTION",
       "sink_desc": "LDAP注入",
       "severity_level": "High",
