@@ -1,6 +1,6 @@
 {
   "depth": 5,
-  "path_exclusions": [".idea","resources","test","META-INF"],
+  "path_exclusions": [".idea", "resources", "test", "META-INF"],
   "sink_rules": [
     {
       "sink_name": "RCE",
@@ -8,7 +8,13 @@
       "severity_level": "High",
       "sinks": [
         "java.lang.Runtime:exec",
-        "groovy.lang.GroovyShell:evaluate"
+        "java.lang.Runtime:getRuntime",
+        "java.lang.ProcessBuilder:start",
+        "javax.script.ScriptEngine:eval",
+        "groovy.lang.GroovyShell:evaluate",
+        "org.codehaus.groovy.runtime.InvokerHelper:runScript",
+        "org.apache.commons.jexl3.JexlEngine:createScript",
+        "bsh.Interpreter:eval"
       ]
     },
     {
@@ -17,7 +23,10 @@
       "severity_level": "High",
       "sinks": [
         "java.io.ObjectInputStream:readObject|readUnshared",
-        "org.yaml.snakeyaml.Yaml:load"
+        "org.yaml.snakeyaml.Yaml:load",
+        "org.yaml.snakeyaml.Yaml:loadAs",
+        "com.fasterxml.jackson.databind.ObjectMapper:readValue",
+        "com.thoughtworks.xstream.XStream:fromXML"
       ]
     },
     {
@@ -26,7 +35,51 @@
       "severity_level": "Medium",
       "sinks": [
         "java.net.URL:openConnection",
-        "com.squareup.okhttp.OkHttpClient:newCall"
+        "java.net.URL:openStream",
+        "org.apache.http.client.HttpClient:execute",
+        "org.apache.http.client.methods.HttpGet:<init>",
+        "com.squareup.okhttp.OkHttpClient:newCall",
+        "org.springframework.web.client.RestTemplate:exchange|getForObject|getForEntity"
+      ]
+    },
+    {
+      "sink_name": "SQLI",
+      "sink_desc": "SQL注入漏洞",
+      "severity_level": "High",
+      "sinks": [
+        "java.sql.Statement:execute|executeQuery|executeUpdate",
+        "java.sql.Connection:prepareStatement",
+        "org.hibernate.Query:createQuery|executeUpdate",
+        "org.mybatis.spring.SqlSessionTemplate:selectOne|selectList"
+      ]
+    },
+    {
+      "sink_name": "XSS",
+      "sink_desc": "跨站脚本漏洞",
+      "severity_level": "Medium",
+      "sinks": [
+        "javax.servlet.http.HttpServletResponse:getWriter|getOutputStream",
+        "org.springframework.web.servlet.ModelAndView:addObject",
+        "org.apache.struts2.ServletActionContext:getResponse"
+      ]
+    },
+    {
+      "sink_name": "PATH_TRAVERSAL",
+      "sink_desc": "路径遍历漏洞",
+      "severity_level": "Medium",
+      "sinks": [
+        "java.io.File:<init>",
+        "java.nio.file.Files:newInputStream|newOutputStream|write|readAllBytes",
+        "org.apache.commons.io.FileUtils:openInputStream|openOutputStream"
+      ]
+    },
+    {
+      "sink_name": "COMMAND_INJECTION",
+      "sink_desc": "命令注入",
+      "severity_level": "High",
+      "sinks": [
+        "java.lang.Runtime:exec",
+        "java.lang.ProcessBuilder:start"
       ]
     }
   ]
